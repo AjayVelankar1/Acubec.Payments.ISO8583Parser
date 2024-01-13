@@ -1,0 +1,1758 @@
+﻿{
+  "SchemaName": "RupaySchema",
+  "SchemaDescription": "",
+  "SchemaEncoding": "Binary",
+  "ByteMapLength": 2,
+  "Fields": [
+    {
+      "name": "DE_2",
+      "index": 2,
+      "description": "PAN - PRIMARY ACCOUNT NUMBER",
+      "alias": "PAN",
+      "type": "Variable",
+      "size": "2",
+      "dataType": "Numeric",
+      "dataEncoding": "Binary",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": "",
+      "mask": true
+    },
+    {
+      "index": 3,
+      "name": "DE_3",
+      "description": "PROCESSING CODE",
+      "alias": "PROCESSING CODE",
+      "type": "Fixed",
+      "size": "6",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_4",
+      "index": 4,
+      "description": "AMOUNT, TRANSACTION",
+      "alias": "AMOUNT, TRANSACTION",
+      "type": "Fixed",
+      "size": "12",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_5",
+      "index": 5,
+      "description": "AMOUNT, Reconciliation",
+      "alias": "AMOUNT, Reconciliation",
+      "type": "Fixed",
+      "size": "12",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_6",
+      "index": 6,
+      "description": "AMOUNT, CARDHOLDER BILLING Fee",
+      "alias": "AMOUNT, CARDHOLDER BILLING Fee",
+      "type": "Fixed",
+      "size": "12",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_7",
+      "index": 7,
+      "description": "Date and Time, Transmission",
+      "alias": "Date and Time, Transmission",
+      "type": "Fixed",
+      "size": "10",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_8",
+      "index": 8,
+      "description": "AMOUNT, CARDHOLDER BILLING FEE",
+      "alias": "AMOUNT, CARDHOLDER BILLING FEE",
+      "type": "Fixed",
+      "size": "8",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_9",
+      "index": 9,
+      "description": "Conversion Rate Reconciliation",
+      "alias": "Conversion Rate Reconciliation",
+      "type": "Fixed",
+      "size": "8",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_10",
+      "index": 10,
+      "description": "Conversion Rate, Cardholder Billing",
+      "alias": "Conversion Rate, Cardholder Billing",
+      "type": "Fixed",
+      "size": "8",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_11",
+      "index": 11,
+      "description": "SYSTEM TRACE AUDIT NUMBER",
+      "alias": "SYSTEM TRACE AUDIT NUMBER",
+      "type": "Fixed",
+      "size": "6",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_12",
+      "index": 12,
+      "description": "Date and Time, Local Transaction",
+      "alias": "Date and Time, Local Transaction",
+      "type": "Fixed",
+      "size": "6",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_13",
+      "index": 13,
+      "description": "Date Effective",
+      "alias": "Date Effective",
+      "type": "Fixed",
+      "size": "4",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_14",
+      "index": 14,
+      "description": "Date, Expiration",
+      "alias": "DATE, EXPIRATION",
+      "type": "Fixed",
+      "size": "4",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_15",
+      "index": 15,
+      "description": "DATE, SETTLEMENT",
+      "alias": "DATE, SETTLEMENT",
+      "type": "Fixed",
+      "size": "4",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_16",
+      "index": 16,
+      "description": "DATE, CONVERSION",
+      "alias": "DATE, CONVERSION",
+      "type": "Fixed",
+      "size": "4",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_17",
+      "index": 17,
+      "description": "DATE, CAPTURE",
+      "alias": "DATE, CAPTURE",
+      "type": "Fixed",
+      "size": "4",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_18",
+      "index": 18,
+      "description": "MERCHANTS TYPE",
+      "alias": "MERCHANTS TYPE",
+      "type": "Fixed",
+      "size": "4",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_19",
+      "index": 19,
+      "description": "Country Code, Acquiring Institution",
+      "alias": "Country Code, Acquiring Institution",
+      "type": "Fixed",
+      "size": "3",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_20",
+      "index": 20,
+      "description": "COUNTRY CODE PAN ",
+      "alias": "COUNTRY CODE PAN ",
+      "type": "Fixed",
+      "size": "3",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_21",
+      "index": 21,
+      "description": " ",
+      "alias": "COUNTRY CODE FORWARDING INSTITUTION",
+      "type": "Fixed",
+      "size": "3",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_22",
+      "index": 22,
+      "description": "Point of Service Data Code",
+      "alias": "Point of Service Data Code",
+      "type": "Fixed",
+      "size": "3",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_23",
+      "index": 23,
+      "description": "CARD SEQUENCE NUMBER",
+      "alias": "CARD SEQUENCE NUMBER",
+      "type": "Fixed",
+      "size": "3",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_24",
+      "index": 24,
+      "description": "FUNCTION CODE",
+      "alias": "FUNCTION CODE",
+      "type": "Fixed",
+      "size": "3",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_25",
+      "index": 25,
+      "description": "MESSAGE REASON CODE",
+      "alias": "MESSAGE REASON CODE",
+      "type": "Fixed",
+      "size": "2",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_26",
+      "index": 26,
+      "description": "CARD ACCEPTOR BUSINESS CODE",
+      "alias": "CARD ACCEPTOR BUSINESS CODE",
+      "type": "Fixed",
+      "size": "4",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_27",
+      "index": 27,
+      "description": "APPROVAL CODE LENGTH",
+      "alias": "APPROVAL CODE LEN",
+      "type": "Fixed",
+      "size": "1",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_28",
+      "index": 28,
+      "description": "DATE RECONCILATION",
+      "alias": "DATE RECONCILATION",
+      "type": "Fixed",
+      "size": "6",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_29",
+      "index": 29,
+      "description": "RECONCILATION INDICATOR",
+      "alias": "RECONCILATION INDICATOR",
+      "type": "Fixed",
+      "size": "3",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_30",
+      "index": 30,
+      "description": "Amounts, Original",
+      "alias": "Amounts, Original",
+      "type": "Fixed",
+      "size": "24",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_31",
+      "index": 31,
+      "description": "Gateway Acquired Data",
+      "alias": "Gateway Acquired Data",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_32",
+      "index": 32,
+      "description": "Acquiring Institution Identification Code",
+      "alias": "Acquiring Institution Identification Code",
+      "type": "Variable",
+      "size": "2",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_33",
+      "index": 33,
+      "description": "Forwarding Institution Identification Code",
+      "alias": "Forwarding Institution Identification Code",
+      "type": "Variable",
+      "size": "2",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_34",
+      "index": 34,
+      "description": "Primary Account Number, Extended",
+      "alias": "Primary Account Number, Extended",
+      "type": "Variable",
+      "size": "2",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_35",
+      "index": 35,
+      "description": "Track 2 Data",
+      "alias": "Track 2 Data",
+      "type": "Variable",
+      "size": "2",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_36",
+      "index": 36,
+      "description": "TRACK 3 DATA",
+      "alias": "TRACK 3 DATA",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_37",
+      "index": 37,
+      "description": "Retrieval Reference Number",
+      "alias": "Retrieval Reference Number",
+      "type": "Fixed",
+      "size": "12",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_38",
+      "index": 38,
+      "description": "APPROVAL CODE",
+      "alias": "APPROVAL CODE",
+      "type": "Fixed",
+      "size": "6",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_39",
+      "index": 39,
+      "description": "ACTION CODE",
+      "alias": "ACTION CODE",
+      "type": "Fixed",
+      "size": "2",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_40",
+      "index": 40,
+      "description": "SERVICE CODE",
+      "alias": "SERVICE CODE",
+      "type": "Fixed",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_41",
+      "index": 41,
+      "description": "Card Acceptor Terminal Identification",
+      "alias": "Card Acceptor Terminal Identification",
+      "type": "Fixed",
+      "size": "8",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_42",
+      "index": 42,
+      "description": "Card Acceptor Identification Code",
+      "alias": "Card Acceptor Identification Code",
+      "type": "Fixed",
+      "size": "15",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_43",
+      "index": 43,
+      "description": "Card Acceptor Name/Location",
+      "alias": "Card Acceptor Name/Location",
+      "type": "Fixed",
+      "size": "40",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_44",
+      "index": 44,
+      "description": "ADITIONAL RESPONSE DATA",
+      "alias": "ADITIONAL RESPONSE DATA",
+      "type": "Variable",
+      "size": "2",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_45",
+      "index": 45,
+      "description": "TRACK 1 DATA",
+      "alias": "TRACK 1 DATA",
+      "type": "Variable",
+      "size": "2",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_46",
+      "index": 46,
+      "description": "AMOUNT FEES",
+      "alias": "AMOUNT FEES",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_47",
+      "index": 47,
+      "description": "Data Record 2",
+      "alias": "Data Record 2",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_48",
+      "index": 48,
+      "description": "Data Record 3",
+      "alias": "Data Record 3",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_49",
+      "index": 49,
+      "description": "Currency Code, Transaction",
+      "alias": "Currency Code, Transaction",
+      "type": "Fixed",
+      "size": "3",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_50",
+      "index": 50,
+      "description": "Currency Code, Reconciliation",
+      "alias": "Currency Code, Reconciliation",
+      "type": "Fixed",
+      "size": "3",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_51",
+      "index": 51,
+      "description": "Currency Code, Cardholder Billing",
+      "alias": "Currency Code, Cardholder Billing",
+      "type": "Fixed",
+      "size": "3",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_52",
+      "index": 52,
+      "description": "Personal Identification Number Data",
+      "alias": "Personal Identification Number Data",
+      "type": "Fixed",
+      "size": "16",
+      "dataType": "Binary",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_53",
+      "index": 53,
+      "description": "SECURITY INFORMATION",
+      "alias": "SECURITY INFORMATION",
+      "type": "Variable",
+      "size": "2",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_54",
+      "index": 54,
+      "description": "Amounts, Additional",
+      "alias": "Amounts, Additional",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_55",
+      "index": 55,
+      "description": "IC CARD DATA",
+      "alias": "IC CARD DATA",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "Binary",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_56",
+      "index": 56,
+      "description": "Original Data Elements",
+      "alias": "Original Data Elements",
+      "type": "Variable",
+      "size": "2",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_57",
+      "index": 57,
+      "description": "Authorization Life Cycle Code",
+      "alias": "Authorization Life Cycle Code",
+      "type": "Fixed",
+      "size": "3",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_58",
+      "index": 58,
+      "description": "Authorizing Agent Institution Identification Code",
+      "alias": "Authorizing Agent Institution Identification Code",
+      "type": "Variable",
+      "size": "2",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_59",
+      "index": 59,
+      "description": "Transport Data",
+      "alias": "Transport Data",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_60",
+      "index": 60,
+      "description": "RESERVED NATIONAL",
+      "alias": "RESERVED NATIONAL",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_61",
+      "index": 61,
+      "description": "RESERVED NATIONAL",
+      "alias": "RESERVED NATIONAL",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_62",
+      "index": 62,
+      "description": "Network Identifier",
+      "alias": "Network Identifier",
+      "type": "Fixed",
+      "size": "6",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_63",
+      "index": 63,
+      "description": "Network Settlement Date",
+      "alias": "Network Settlement Date",
+      "type": "Variable",
+      "size": "4",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_64",
+      "index": 64,
+      "description": "MESSAGE AUTHENTICATION CODE FIELD",
+      "alias": "MESSAGE AUTHENTICATION CODE FIELD",
+      "type": "Fixed",
+      "size": "8",
+      "dataType": "Binary",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_65",
+      "index": 65,
+      "description": "ISO RESERVED",
+      "alias": "ISO RESERVED",
+      "type": "Fixed",
+      "size": "8",
+      "dataType": "Binary",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_66",
+      "index": 66,
+      "description": "Amounts, Original Fees",
+      "alias": "Amounts, Original Fees",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_67",
+      "index": 67,
+      "description": "EXTENDED PAYMENT DATA",
+      "alias": "EXTENDED PAYMENT DATA",
+      "type": "Fixed",
+      "size": "2",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_68",
+      "index": 68,
+      "description": " COUNTRY CODE RECEIVING INSTITUTION",
+      "alias": "COUNTRY CODE RECEIVING INSTITUTION",
+      "type": "Fixed",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_69",
+      "index": 69,
+      "description": "COUNTRY CODE SETTLEMENT INSTITUTION ",
+      "alias": "COUNTRY CODE SETTLEMENT INSTITUTION ",
+      "type": "Fixed",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_70",
+      "index": 70,
+      "description": "COUNTRY CODE AUTHORIZING AGENT INSTITUTION",
+      "alias": "COUNTRY CODE AUTHORIZING AGENT INSTITUTION",
+      "type": "Fixed",
+      "size": "3",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_71",
+      "index": 71,
+      "description": "MESSAGE NUMBER",
+      "alias": "MESSAGE NUMBER",
+      "type": "Fixed",
+      "size": "8",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_72",
+      "index": 72,
+      "description": "Data Record 1",
+      "alias": "Data Record 1",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_73",
+      "index": 73,
+      "description": "DATE ACTION",
+      "alias": "DATE ACTION",
+      "type": "Fixed",
+      "size": "6",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_74",
+      "index": 74,
+      "description": "CREDITS NUMBER",
+      "alias": "CREDITS NUMBER",
+      "type": "Fixed",
+      "size": "10",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_75",
+      "index": 75,
+      "description": "CREDITS REVERSAL NUMBER",
+      "alias": "CREDITS REVERSAL NUMBER",
+      "type": "Fixed",
+      "size": "10",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_76",
+      "index": 76,
+      "description": "DEBITS NUMBER",
+      "alias": "DEBITS NUMBER",
+      "type": "Fixed",
+      "size": "10",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_77",
+      "index": 77,
+      "description": "DEBITS REVERSAL NUMBER",
+      "alias": "DEBITS REVERSAL NUMBER",
+      "type": "Fixed",
+      "size": "10",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_78",
+      "index": 78,
+      "description": "TRANSFER NUMBER",
+      "alias": "TRANSFER NUMBER",
+      "type": "Fixed",
+      "size": "10",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_79",
+      "index": 79,
+      "description": "TRANSFER REVERSAL NUMBER",
+      "alias": "TRANSFER REVERSAL NUMBER",
+      "type": "Fixed",
+      "size": "10",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_80",
+      "index": 80,
+      "description": "INQUIRIES NUMBER",
+      "alias": "INQUIRIES NUMBER",
+      "type": "Fixed",
+      "size": "10",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_81",
+      "index": 81,
+      "description": "AUTHORIZATION NUMBER",
+      "alias": "AUTHORIZATION NUMBER",
+      "type": "Fixed",
+      "size": "10",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_82",
+      "index": 82,
+      "description": "INQUIRIES REVERSAL NUMBER",
+      "alias": "INQUIRIES REVERSAL NUMBER",
+      "type": "Fixed",
+      "size": "10",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_83",
+      "index": 83,
+      "description": "PAYMENTS NUMBER",
+      "alias": "PAYMENTS NUMBER",
+      "type": "Fixed",
+      "size": "10",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_84",
+      "index": 84,
+      "description": "PAYMENTS REVERSAL NUMBER",
+      "alias": "PAYMENTS REVERSAL NUMBER",
+      "type": "Fixed",
+      "size": "10",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_85",
+      "index": 85,
+      "description": "FEE COLLECTION NUMBER",
+      "alias": "FEE COLLECTION NUMBER",
+      "type": "Fixed",
+      "size": "10",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_86",
+      "index": 86,
+      "description": "CREDITS, AMOUNT",
+      "alias": "CREDITS, AMOUNT",
+      "type": "Fixed",
+      "size": "16",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_87",
+      "index": 87,
+      "description": "CREDITS, REVERSAL AMOUNT",
+      "alias": "CREDITS, REVERSAL AMOUNT",
+      "type": "Fixed",
+      "size": "16",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_88",
+      "index": 88,
+      "description": "DEBITS, AMOUNT",
+      "alias": "DEBITS, AMOUNT",
+      "type": "Fixed",
+      "size": "16",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_89",
+      "index": 89,
+      "description": "DEBITS, REVERSAL AMOUNT",
+      "alias": "DEBITS, REVERSAL AMOUNT",
+      "type": "Fixed",
+      "size": "16",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_90",
+      "index": 90,
+      "description": "AUTHORIZATIONS REVERSAL NUMBER",
+      "alias": "AUTHORIZATIONS REVERSAL NUMBER",
+      "type": "Fixed",
+      "size": "10",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_91",
+      "index": 91,
+      "description": "COUNTRY CODE TRANSACTION  DESTINATION INSTITUTION",
+      "alias": "COUNTRY CODE TRANSACTION  DESTINATION INSTITUTION",
+      "type": "Fixed",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_92",
+      "index": 92,
+      "description": "COUNTRY CODE TRANSACTION  ORIGINATOR INSTITUTION",
+      "alias": "COUNTRY CODE TRANSACTION  ORIGINATOR INSTITUTION",
+      "type": "Fixed",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_93",
+      "index": 93,
+      "description": "Transaction Destination Institution Identification Code",
+      "alias": "Transaction Destination Institution Identification Code",
+      "type": "Variable",
+      "size": "2",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_94",
+      "index": 94,
+      "description": "Transaction Originator Institution Identification Code",
+      "alias": "Transaction Originator Institution Identification Code",
+      "type": "Variable",
+      "size": "2",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_95",
+      "index": 95,
+      "description": "CM2 Data Record 1",
+      "alias": "CM2 Data Record 1",
+      "type": "Variable",
+      "size": "4",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_96",
+      "index": 96,
+      "description": "KEY MANAGEMENT DATA",
+      "alias": "KEY MANAGEMENT DATA",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "Binary",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_97",
+      "index": 97,
+      "description": "AMOUNT, NET RECONCILATION",
+      "alias": "AMOUNT, NET RECONCILATION",
+      "type": "Fixed",
+      "size": "17",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_98",
+      "index": 98,
+      "description": "PAYEE",
+      "alias": "PAYEE",
+      "type": "Fixed",
+      "size": "25",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_99",
+      "index": 99,
+      "description": "SETTLEMENT INSTITUTION IDENTFICATION CODE",
+      "alias": "SETTLEMENT INSTITUTION IDENT CODE",
+      "type": "Variable",
+      "size": "2",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_100",
+      "index": 100,
+      "description": "Receiving Institution Identification Code",
+      "alias": "Receiving Institution Identification Code",
+      "type": "Variable",
+      "size": "2",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_101",
+      "index": 101,
+      "description": "FILE NAME",
+      "alias": "FILE NAME",
+      "type": "Variable",
+      "size": "2",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_102",
+      "index": 102,
+      "description": "Account Identification 1",
+      "alias": "Account Identification 1",
+      "type": "Variable",
+      "size": "2",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_103",
+      "index": 103,
+      "description": "ACCOUNT IDENTIFICATION 2",
+      "alias": "ACCOUNT IDENTIFICATION 2",
+      "type": "Variable",
+      "size": "2",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_104",
+      "index": 104,
+      "description": "TRANSACTION DESCRIPTION",
+      "alias": "TRANSACTION DESCRIPTION",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_105",
+      "index": 105,
+      "description": "CREDITS CHARGEBACK AMOUNT",
+      "alias": "CREDITS CHARGEBACK AMOUNT",
+      "type": "Fixed",
+      "size": "16",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_106",
+      "index": 106,
+      "description": "DEBITS CHARGEBACK AMOUNT",
+      "alias": "DEBITS CHARGEBACK AMOUNT",
+      "type": "Fixed",
+      "size": "16",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_107",
+      "index": 107,
+      "description": "CREDITS CHARGEBACK NUMBER",
+      "alias": "CREDITS CHARGEBACK NUMBER",
+      "type": "Fixed",
+      "size": "10",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_108",
+      "index": 108,
+      "description": "DEBITS  CHARGEBACK NUMBER",
+      "alias": "DEBITS  CHARGEBACK NUMBER",
+      "type": "Fixed",
+      "size": "10",
+      "dataType": "Numeric",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_109",
+      "index": 109,
+      "description": "CREDITS FEE AMOUNT",
+      "alias": "CREDITS FEE AMOUNT",
+      "type": "Variable",
+      "size": "2",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_110",
+      "index": 110,
+      "description": "DEBITS FEE AMOUNT",
+      "alias": "DEBITS FEE AMOUNT",
+      "type": "Variable",
+      "size": "2",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_111",
+      "index": 111,
+      "description": "Data Record 4",
+      "alias": "Data Record 4",
+      "type": "Variable",
+      "size": "4",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_112",
+      "index": 112,
+      "description": "ISO RESERVED ",
+      "alias": "ISO RESERVED ",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_113",
+      "index": 113,
+      "description": "ISO RESERVED ",
+      "alias": "ISO RESERVED ",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_114",
+      "index": 114,
+      "description": "ISO RESERVED ",
+      "alias": "ISO RESERVED ",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_115",
+      "index": 115,
+      "description": "ISO RESERVED ",
+      "alias": "ISO RESERVED ",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_116",
+      "index": 116,
+      "description": "NATIONAL USE RESERVED ",
+      "alias": "NATIONAL USE RESERVED ",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_117",
+      "index": 117,
+      "description": "NATIONAL USE RESERVED ",
+      "alias": "NATIONAL USE RESERVED ",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_118",
+      "index": 118,
+      "description": "NATIONAL USE RESERVED ",
+      "alias": "NATIONAL USE RESERVED ",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_119",
+      "index": 119,
+      "description": "NATIONAL USE RESERVED ",
+      "alias": "NATIONAL USE RESERVED ",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_120",
+      "index": 120,
+      "description": "NATIONAL USE RESERVED ",
+      "alias": "NATIONAL USE RESERVED ",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_121",
+      "index": 121,
+      "description": "NATIONAL USE RESERVED ",
+      "alias": "NATIONAL USE RESERVED ",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_122",
+      "index": 122,
+      "description": "NATIONAL USE RESERVED ",
+      "alias": "NATIONAL USE RESERVED ",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
+      "name": "DE_123",
+      "index": 123,
+      "description": "Data 1",
+      "alias": "Data 1",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_124",
+      "index": 124,
+      "description": "Data 2",
+      "alias": "Data 2",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_125",
+      "index": 125,
+      "description": "Data 3",
+      "alias": "Data 3",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_126",
+      "index": 126,
+      "description": "Additional Data 3",
+      "alias": "Additional Data 3",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_127",
+      "index": 127,
+      "description": "Additional Data 4",
+      "alias": "Additional Data 4",
+      "type": "Variable",
+      "size": "4",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_128",
+      "index": 128,
+      "description": "MICR Data",
+      "alias": "MICR Data",
+      "type": "Fixed",
+      "size": "5",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "paddingChar": ""
+    }
+  ],
+  "Messages": [
+    {
+      "Name": "AuthRequest",
+      "Description": "",
+      "Alias": "1100",
+      "Type": "Request",
+      "Identifier": [ "6", "7", "11" ],
+      "Fields": [ "6", "11" ]
+    },
+    {
+      "Name": "PurchaseRequest",
+      "Description": "",
+      "Alias": "1200",
+      "Type": "Request",
+      "Identifier": [ "6", "7", "11" ],
+      "Fields": [ "6", "11" ]
+    },
+    {
+      "Name": "PurchaseRequest1",
+      "Description": "",
+      "Alias": "0200",
+      "Type": "Request",
+      "Identifier": [ "6", "7", "11" ],
+      "Fields": [ "6", "11" ]
+    },
+    {
+      "Name": "PurchaseResponce",
+      "Description": "",
+      "Alias": "0210",
+      "Type": "Request",
+      "Identifier": [ "6", "7", "11" ],
+      "Fields": [ "6", "11" ]
+    }
+  ]
+}

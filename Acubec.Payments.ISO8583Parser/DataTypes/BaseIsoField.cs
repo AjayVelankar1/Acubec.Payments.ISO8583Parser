@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Acubec.Payments.ISO8583Parser.Helpers;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Acubec.Payments.ISO8583Parser.Interfaces;
 public enum DataEncoding
 {
     ASCII,
     Binary,
-    ABSADIC,
+    EBCDIC,
     HEX
 }
 
@@ -19,9 +20,10 @@ public abstract class BaseIsoField: IIsoField
     #region Fields
     protected int _length;
     protected string _value;
-    protected ByteMap _byteMap;
+    protected ByteMaps _byteMap;
     protected int _messageIndex;
     protected DataEncoding _encoding;
+    protected IServiceProvider _serviceProvider;
 
     #endregion Fields
 
@@ -41,7 +43,8 @@ public abstract class BaseIsoField: IIsoField
     /// <param name="type">Type of the field.</param>
     /// <param name="length">Length of the message.</param>
     /// <param name="isMandatory">if set to <c>true</c> [is mandatory].</param>
-    protected BaseIsoField(string name, IsoTypes type, int length, int messageIndex, ByteMap byteMap, DataEncoding dataEncoding = DataEncoding.ASCII)
+    protected BaseIsoField(string name, IsoTypes type, int length, int messageIndex
+        , ByteMaps byteMap , IServiceProvider serviceProvider, DataEncoding dataEncoding = DataEncoding.ASCII)
     {
         Name = name;
         Type = type;
@@ -49,6 +52,7 @@ public abstract class BaseIsoField: IIsoField
         _messageIndex = messageIndex;
         _byteMap = byteMap;
         _encoding = dataEncoding;
+        _serviceProvider = serviceProvider;
     }
 
     #endregion Protected Constructors
@@ -73,18 +77,8 @@ public abstract class BaseIsoField: IIsoField
 
     public virtual byte[] GetValueBytes()
     {
-        if (_encoding == DataEncoding.ASCII)
-            return Encoding.ASCII.GetBytes(ToString());
-
-        else if (_encoding == DataEncoding.Binary)
-        {
-            var bytes = ByteHelper.GetBytesFromHexString(ToString());
-            ByteHelper.CombineBytes(Encoding.ASCII.GetBytes(bytes.Length.ToString().PadLeft(3, '0')), bytes);
-            return bytes;
-        }
-
-
-        return Encoding.ASCII.GetBytes(ToString());
+        var encoder = _serviceProvider.GetKeyedService<IEncoderFormator>(_encoding.ToString());
+        return encoder.Decode(ToString());
     }
 
     public virtual string LogDump()

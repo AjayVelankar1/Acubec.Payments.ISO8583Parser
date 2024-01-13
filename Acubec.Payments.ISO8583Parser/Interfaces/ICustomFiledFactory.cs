@@ -9,5 +9,5 @@ namespace Acubec.Payments.ISO8583Parser.Interfaces;
 
 public interface ICustomFiledFactory
 {
-    BaseIsoField GetField(Field field, ByteMap byteMap);
+    BaseIsoField GetField(Field field, ByteMaps byteMap);
 }

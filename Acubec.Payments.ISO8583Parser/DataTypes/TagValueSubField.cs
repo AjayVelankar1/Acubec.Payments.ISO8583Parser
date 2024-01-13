@@ -12,7 +12,7 @@ internal class TagValueSubField : IsoBaseVariableLengthField
 
     readonly Dictionary<string, string> _subField = new Dictionary<string, string>();
 
-    public TagValueSubField(string name, short length, int messageIndex, ByteMap byteMap, DataEncoding dataEncoding = DataEncoding.ASCII, short bitMapLength = 2) : base(name, length, messageIndex, byteMap, dataEncoding, bitMapLength)
+    public TagValueSubField(string name, short length, int messageIndex, ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding dataEncoding = DataEncoding.ASCII, DataEncoding headerLengthEncoding = DataEncoding.ASCII, short bitMapLength = 2) : base(name, length, messageIndex, byteMap, serviceProvider, dataEncoding, headerLengthEncoding,bitMapLength)
     {
     }
 

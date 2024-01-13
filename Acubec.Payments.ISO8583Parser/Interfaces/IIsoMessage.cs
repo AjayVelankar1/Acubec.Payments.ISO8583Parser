@@ -3,6 +3,7 @@
 public interface IIsoMessage
 {
     #region Public Properties
+    int ByteMapLength { get; }
 
     bool IsAdviceMessage { get; }
     bool IsFinancialTransaction { get; }

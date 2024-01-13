@@ -11,8 +11,8 @@ namespace Acubec.Payments.ISO8583Parser.DataTypes;
 
 internal class IsoAlphaNumericFixedField : IsoBaseFixedField
 {
-    public IsoAlphaNumericFixedField(string name, int length, int messageIndex, ByteMap byteMap, DataEncoding dataEncoding = DataEncoding.ASCII)
-          : base(name, length, messageIndex, byteMap, dataEncoding)
+    public IsoAlphaNumericFixedField(string name, int length, int messageIndex, ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding dataEncoding = DataEncoding.ASCII)
+          : base(name, length, messageIndex, byteMap, serviceProvider, dataEncoding)
     {
     }
 

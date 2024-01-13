@@ -1,4 +1,5 @@
 ﻿using Acubec.Payments.ISO8583Parser.Interfaces;
+using System.Text.Json.Serialization;
 
 namespace Acubec.Payments.ISO8583Parser.Definitions;
 
@@ -23,7 +24,10 @@ public sealed class Field
     public int SizeInt => int.Parse(Size);
 
     public string DataType { get; set; }
+
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public DataEncoding DataEncoding { get; set; }
     public bool isPaddingRequired { get; set; }
     public bool Mask { get; set; }
+    public DataEncoding HeaderLengthEncoding { get; set; }
 }

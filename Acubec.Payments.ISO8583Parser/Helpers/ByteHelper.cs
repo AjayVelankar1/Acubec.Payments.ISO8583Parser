@@ -240,7 +240,7 @@ public static class ByteHelper
         return stringBuilder.ToString();
     }
 
-    static byte[] convertHexToBinaryUsingConvert(string hexString)
+    internal static byte[] convertHexToBinaryUsingConvert(string hexString)
     {
         // Convert hex to binary using Convert class
         byte[] hexBytes = new byte[hexString.Length / 2];

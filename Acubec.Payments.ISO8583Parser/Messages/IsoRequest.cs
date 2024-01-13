@@ -11,21 +11,26 @@ namespace Acubec.Payments.ISO8583Parser.Messages;
 
 internal class IsoRequest : IIsoMessage
 {
-    protected ByteMap _byteMap;
+    protected ByteMaps _byteMap;
     protected StringBuilder _logDump;
     protected string _messageType;
-    protected string _messageEncoding;
+    protected DataEncoding _messageEncoding;
     Dictionary<int, IIsoField> _fields;
+    protected int _byteMapLength;
 
     public Dictionary<int, IIsoField> Fields => _fields;
 
-    public IsoRequest(string messageType, string encoding)
+    public IsoRequest(string messageType, DataEncoding encoding, int byteMapLength)
     {
         _messageType = messageType;
-        _byteMap = new ByteMap(MessageType);
+        _byteMapLength = byteMapLength;
+        _byteMap = new ByteMaps(MessageType, ByteMapLength);
         _logDump = new StringBuilder();
-        _messageEncoding = encoding;    
+        _messageEncoding = encoding;
+        _fields = new();
     }
+
+    public int ByteMapLength=> _byteMapLength;
 
     public bool IsAdviceMessage
     {
@@ -54,7 +59,7 @@ internal class IsoRequest : IIsoMessage
 
     public string MessageType => _messageType;
 
-    public ByteMap ByteMap => ByteMap;
+    public ByteMaps ByteMap => _byteMap;
 
     public string STANValue { get; }
     public string RRNValue { get; }
@@ -81,7 +86,7 @@ internal class IsoRequest : IIsoMessage
 
 internal abstract class IsoResponse : IsoRequest
 {
-    protected IsoResponse(string messageType, string encoding) : base(messageType, encoding)
+    protected IsoResponse(string messageType, DataEncoding encoding, int byteMapLength) : base(messageType, encoding, byteMapLength)
     {
     }
 

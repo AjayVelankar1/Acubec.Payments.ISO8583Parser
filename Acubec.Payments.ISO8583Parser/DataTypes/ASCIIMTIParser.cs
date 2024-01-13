@@ -1,4 +1,4 @@
-﻿using Acubec.Payments.ISO8583Parser.Definitions;
+﻿using Acubec.Payments.ISO8583Parser.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +16,12 @@ internal sealed class ASCIIMTIParser:IMTIParser
 
         var mti = Encoding.ASCII.GetString(isoMessage, 0, 4);
         return mti;
+    }
+
+    public byte[] WriteMTI(string mti)
+    {
+        Span<byte> mtiBytes = stackalloc byte[4];
+        Encoding.ASCII.TryGetBytes(mti, mtiBytes,out var output);
+        return mtiBytes.ToArray();
     }
 }
