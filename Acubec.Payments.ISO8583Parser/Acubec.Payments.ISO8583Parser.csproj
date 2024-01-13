@@ -1,13 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<Title>ISO 8583 Parser for .Net Core</Title>
+		<Authors>Ajay Velankar</Authors>
+		<Description>this pis a open source .net core library for, mission-critical enterprise software, based on International Organization for Standardization transaction card originated messages standard (ISO-8583). 
+This library is similar  of the popular jPOS library in JAVA.
+</Description>
+		<Copyright>MTI</Copyright>
+		<PackageProjectUrl>https://github.com/AjayVelankar1/Acubec.Payments.ISO8583Parser</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/AjayVelankar1/Acubec.Payments.ISO8583Parser</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>ISO8583 Parser , ISO8583</PackageTags>
+		<PackageReleaseNotes>This is first version. please report any issue on git and will start supporting.</PackageReleaseNotes>
+		<PackAsTool>False</PackAsTool>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\LICENSE">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
+		<None Include="readme.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+	</ItemGroup>
 
 </Project>

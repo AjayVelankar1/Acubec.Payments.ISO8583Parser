@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Acubec.Payments.ISO8583Parser.Interfaces;
 
-internal interface IMTIParser
+public interface IMTIParser
 {
     public string ParseMTI(byte[] isoMessage);
 

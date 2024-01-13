@@ -84,6 +84,7 @@ internal class IsoRequest : IIsoMessage
     #endregion Public Properties
 }
 
+
 internal abstract class IsoResponse : IsoRequest
 {
     protected IsoResponse(string messageType, DataEncoding encoding, int byteMapLength) : base(messageType, encoding, byteMapLength)
