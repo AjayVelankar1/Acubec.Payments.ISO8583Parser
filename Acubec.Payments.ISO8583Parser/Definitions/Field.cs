@@ -8,6 +8,8 @@ public enum FieldTypes
     Fixed,
     Variable,
     TagValueSubField,
+    ProcessingCode,
+
 }
 
 public sealed class Field

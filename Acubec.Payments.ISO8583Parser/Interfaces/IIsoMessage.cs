@@ -19,5 +19,7 @@ public interface IIsoMessage
     DateTime NetworkSentTime { get; set; }
     DateTime NetworkReceivedTime { get; set; }
     public string TransactionId { get; set; }
+
+    public Dictionary<int, IIsoField> Fields { get; }
     #endregion Public Properties
 }

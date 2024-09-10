@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace Acubec.Payments.ISO8583Parser.Helpers;
 public static class ByteHelper
@@ -240,7 +236,39 @@ public static class ByteHelper
         return stringBuilder.ToString();
     }
 
+    public static byte[] ASCIIToHex(this byte[] bytes)
+    {
+        byte[] hexArray = new byte[bytes.Length * 2];
+
+        for (int i = 0; i < bytes.Length; i++)
+        {
+            // Convert each byte to its hex representation and store in the array
+            hexArray[i * 2] = GetHexValue(bytes[i] >> 4 & 0x0F);       // High nibble
+            hexArray[i * 2 + 1] = GetHexValue(bytes[i] & 0x0F); // Low nibble
+        }
+
+        return hexArray;
+    }
+
+    static byte GetHexValue(int nibble)
+    {
+        // Convert a nibble (4 bits) to its hex ASCII value
+        return (byte)(nibble < 10 ? nibble + '0' : nibble - 10 + 'A');
+    }
+
     internal static byte[] convertHexToBinaryUsingConvert(string hexString)
+    {
+        // Convert hex to binary using Convert class
+        byte[] hexBytes = new byte[hexString.Length / 2];
+        for (int i = 0; i < hexBytes.Length; i++)
+        {
+            hexBytes[i] = Convert.ToByte(hexString.Substring(i * 2, 2), 16);
+        }
+
+        return hexBytes;
+    }
+
+    public static byte[] HexStringToByteArray(string hexString)
     {
         // Convert hex to binary using Convert class
         byte[] hexBytes = new byte[hexString.Length / 2];

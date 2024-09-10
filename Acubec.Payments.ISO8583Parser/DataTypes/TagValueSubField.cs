@@ -1,18 +1,14 @@
 ﻿using Acubec.Payments.ISO8583Parser.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Acubec.Payments.ISO8583Parser.DataTypes;
 
-internal class TagValueSubField : IsoBaseVariableLengthField
+
+public class TagValueSubField : IsoBaseVariableLengthField
 {
 
     readonly Dictionary<string, string> _subField = new Dictionary<string, string>();
 
-    public TagValueSubField(string name, short length, int messageIndex, ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding dataEncoding = DataEncoding.ASCII, DataEncoding headerLengthEncoding = DataEncoding.ASCII, short bitMapLength = 2) : base(name, length, messageIndex, byteMap, serviceProvider, dataEncoding, headerLengthEncoding,bitMapLength)
+    public TagValueSubField(string name, short length, int messageIndex, ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding dataEncoding = DataEncoding.ASCII, DataEncoding headerLengthEncoding = DataEncoding.ASCII, short bitMapLength = 2) : base(name, length, messageIndex, byteMap, serviceProvider, dataEncoding, headerLengthEncoding, bitMapLength)
     {
     }
 

@@ -1,16 +1,11 @@
 ﻿using Acubec.Payments.ISO8583Parser.Helpers;
 using Acubec.Payments.ISO8583Parser.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Acubec.Payments.ISO8583Parser.DataTypes;
 
-internal class IsoBaseVariableLengthField : BaseIsoField, IIsoField
+public class IsoBaseVariableLengthField : BaseIsoField, IIsoField
 {
     private readonly short _bitMapLength;
     private int _originalLength;
@@ -25,7 +20,7 @@ internal class IsoBaseVariableLengthField : BaseIsoField, IIsoField
     public IsoBaseVariableLengthField(string name, short length, int messageIndex,
         ByteMaps byteMap,
         IServiceProvider serviceProvider,
-        DataEncoding dataEncoding = DataEncoding.ASCII, 
+        DataEncoding dataEncoding = DataEncoding.ASCII,
         DataEncoding headerLengthEncoding = DataEncoding.ASCII,
         short bitMapLength = 2)
         : base(name, IsoTypes.LLVar, length, messageIndex, byteMap, serviceProvider, dataEncoding)
@@ -82,9 +77,12 @@ internal class IsoBaseVariableLengthField : BaseIsoField, IIsoField
         var encoder = _serviceProvider.GetKeyedService<IEncoderFormator>(_encoding.ToString());
         var lengthEncoder = _serviceProvider.GetKeyedService<IEncoderFormator>(_headerLengthEncoding.ToString());
 
-        var bytes = dataByte.GetByteSlice( _length, offset);
+        var bytes = dataByte.GetByteSlice(_length, offset);
         string strLen = lengthEncoder.Encode(bytes);
         var dataLength = Convert.ToInt32(strLen, CultureInfo.InvariantCulture);
+
+        //strLen = dataLength.ToString(CultureInfo.InvariantCulture).PadLeft(_originalLength, '0');
+
         bytes = dataByte.GetByteSlice(dataLength, offset + _length);
         Value = encoder.Encode(bytes);
 
@@ -98,3 +96,4 @@ internal class IsoBaseVariableLengthField : BaseIsoField, IIsoField
 
     #endregion Public Methods
 }
+

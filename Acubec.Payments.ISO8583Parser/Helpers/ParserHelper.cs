@@ -1,4 +1,7 @@
-﻿namespace Acubec.Payments.ISO8583Parser.Helpers;
+﻿using Acubec.Payments.ISO8583Parser.Definitions;
+using System.Text.Json;
+
+namespace Acubec.Payments.ISO8583Parser.Helpers;
 
 public static class ParserHelper
 {
@@ -20,5 +23,13 @@ public static class ParserHelper
         }
 
         return str.PadRight(totalWidth, paddingChar);
+    }
+    public static SchemaConfiguration GetSchemaConfiguration(string schemaPath)
+    {
+        var jsonConfiguration = File.ReadAllText(schemaPath);
+        JsonSerializerOptions options = new();
+        options.PropertyNameCaseInsensitive = true;
+        var schemaConfiguration = JsonSerializer.Deserialize<SchemaConfiguration>(jsonConfiguration, options);
+        return schemaConfiguration; ;
     }
 }

@@ -1,14 +1,11 @@
-﻿using Acubec.Payments.ISO8583Parser.Interfaces;
+﻿using Acubec.Payments.ISO8583Parser.Helpers;
+using Acubec.Payments.ISO8583Parser.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Acubec.Payments.ISO8583Parser.Test;
 
-public class EbcdicEncoderFormatorTests:IClassFixture<ISO8583ParserTestFixture>
+public class EbcdicEncoderFormatorTests : IClassFixture<ISO8583ParserTestFixture>
 {
     private readonly IEncoderFormator _asciiEncoderFormator;
     readonly IServiceProvider _serviceProvider;
@@ -24,10 +21,21 @@ public class EbcdicEncoderFormatorTests:IClassFixture<ISO8583ParserTestFixture>
     {
         System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
         var encoder = Encoding.GetEncoding("IBM037");
-        byte[] input = encoder.GetBytes("Test");
-        string expected = "Test";
+        byte[] input = ByteHelper.HexStringToByteArray("C1C2C3C4C5C6C7C8C9D1D2D3D4D5D6D7D8D9E2E3E4E5E6E7E8E9");
 
-        string actual = _asciiEncoderFormator.Encode(input);
+        var t = Encoding.Convert(encoder, Encoding.ASCII, input);
+        string expected = "ABC...XYZ123...789";
+
+        var qq = encoder.GetString(t);
+
+        string actual = _asciiEncoderFormator.Encode(t);
+
+        Encoding ascii = Encoding.ASCII;
+        Encoding ebcdic = Encoding.GetEncoding("IBM037");
+
+        var qq1 = Encoding.Convert(ascii, ebcdic, Encoding.ASCII.GetBytes(expected));
+
+
 
         Assert.Equal(expected, actual);
     }

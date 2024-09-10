@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Acubec.Payments.ISO8583Parser.Helpers;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace Acubec.Payments.ISO8583Parser.Interfaces;
 public enum DataEncoding
@@ -12,10 +6,14 @@ public enum DataEncoding
     ASCII,
     Binary,
     EBCDIC,
-    HEX
+    HEX,
+    CardholderBillingConversionRate,
+    PosEntryMode,
+    CardAcceptorNameLocation,
+    ReplacementAmounts,
 }
 
-public abstract class BaseIsoField: IIsoField
+public abstract class BaseIsoField : IIsoField
 {
     #region Fields
     protected int _length;
@@ -24,7 +22,6 @@ public abstract class BaseIsoField: IIsoField
     protected int _messageIndex;
     protected DataEncoding _encoding;
     protected IServiceProvider _serviceProvider;
-
     #endregion Fields
 
     #region Protected Constructors
@@ -44,7 +41,7 @@ public abstract class BaseIsoField: IIsoField
     /// <param name="length">Length of the message.</param>
     /// <param name="isMandatory">if set to <c>true</c> [is mandatory].</param>
     protected BaseIsoField(string name, IsoTypes type, int length, int messageIndex
-        , ByteMaps byteMap , IServiceProvider serviceProvider, DataEncoding dataEncoding = DataEncoding.ASCII)
+        , ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding dataEncoding = DataEncoding.ASCII)
     {
         Name = name;
         Type = type;
@@ -83,18 +80,20 @@ public abstract class BaseIsoField: IIsoField
 
     public virtual string LogDump()
     {
+        var encoder = _serviceProvider.GetKeyedService<IEncoderFormator>(_encoding.ToString());
+        var value = _encoding == DataEncoding.ASCII ? Value : BitConverter.ToString(encoder.Decode(Value));
         if (Mask)
         {
-            if (Value?.Length > 4)
+            if (value?.Length > 4)
             {
-                string.Format($"****-{Value.Substring(Value.Length - 4)}");
+                return string.Format($"****-{value.Substring(value.Length - 4)}");
             }
             else
             {
                 return "****";
             }
         }
-        return Value;
+        return value;
     }
 
     public abstract override string ToString();

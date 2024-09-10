@@ -1,10 +1,9 @@
-﻿using System;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using Acubec.Payments.ISO8583Parser.Helpers;
+﻿using Acubec.Payments.ISO8583Parser.Helpers;
 using Acubec.Payments.ISO8583Parser.Interfaces;
+using System.Text;
 
 namespace Acubec.Payments.ISO8583Parser;
+
 
 internal class ByteMap
 {
@@ -99,7 +98,7 @@ public sealed class ByteMaps
 
         if (position > 64)
         {
-            _byteMaps[0].BitMap[index -1] |= 0x80;
+            _byteMaps[0].BitMap[index - 1] |= 0x80;
             _byteMaps[index].BitMap[(reminder - 1) / 8] |= (byte)(0x80 >> (reminder - 1) % 8);
             _byteMaps[index].SetBitMap(_byteMaps[index].BitMap);
         }
@@ -112,8 +111,14 @@ public sealed class ByteMaps
 
     internal byte[] GetDataByte(DataEncoding format, IMTIParser mtiParser)
     {
+        for (int i = 0; i < _byteMaps.Length; i++)
+        {
+            Array.Fill(_byteMaps[i].BitMap, (byte)0);
+        }
+
         StringBuilder str = new();
         _byteMaps[0].IsSet = true;
+
         foreach (var field in _dictionary)
         {
             if (field.Key > 64 && field.Value.IsSet)
@@ -124,7 +129,6 @@ public sealed class ByteMaps
             }
 
             str.Append(field.Value.ToString());
-
         }
 
         byte[] dataBytes = GetHeaderBytes(format);
@@ -157,7 +161,7 @@ public sealed class ByteMaps
                 {
                     bytes = ByteHelper.Combine(bytes, _byteMaps[i].BitMap);
                 }
-                
+
             }
         }
         return bytes;

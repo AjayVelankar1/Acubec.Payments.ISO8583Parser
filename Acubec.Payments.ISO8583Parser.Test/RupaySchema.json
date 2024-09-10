@@ -1,27 +1,55 @@
 ﻿{
-  "SchemaName": "RupaySchema",
-  "SchemaDescription": "",
+  "SchemaName": "Pulse.08583",
+  "SchemaDescription": "Pulse.08583",
   "SchemaEncoding": "Binary",
   "ByteMapLength": 2,
   "Fields": [
     {
+      "name": "DE_0",
+      "description": "MESSAGE TYPE INDICATOR",
+      "alias": "MTI",
+      "type": "Fixed",
+      "size": "4",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "isPaddingRequired": false,
+      "Index": 0,
+      "paddingChar": ""
+    },
+    {
+      "name": "DE_1",
+      "description": "BITMAP",
+      "alias": "BITMAP",
+      "type": "Fixed",
+      "size": "16",
+      "dataType": "Binary",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      },
+      "Index": 1,
+      "paddingChar": ""
+    },
+    {
       "name": "DE_2",
-      "index": 2,
       "description": "PAN - PRIMARY ACCOUNT NUMBER",
       "alias": "PAN",
       "type": "Variable",
       "size": "2",
       "dataType": "Numeric",
-      "dataEncoding": "Binary",
+      "dataEncoding": "ASCII",
       "formats": {
         "ISO93": {}
       },
-      "paddingChar": "",
-      "mask": true
+      "Index": 2,
+      "paddingChar": ""
     },
     {
-      "index": 3,
       "name": "DE_3",
+      "Index": 3,
       "description": "PROCESSING CODE",
       "alias": "PROCESSING CODE",
       "type": "Fixed",
@@ -35,7 +63,7 @@
     },
     {
       "name": "DE_4",
-      "index": 4,
+      "Index": 4,
       "description": "AMOUNT, TRANSACTION",
       "alias": "AMOUNT, TRANSACTION",
       "type": "Fixed",
@@ -49,7 +77,7 @@
     },
     {
       "name": "DE_5",
-      "index": 5,
+      "Index": 5,
       "description": "AMOUNT, Reconciliation",
       "alias": "AMOUNT, Reconciliation",
       "type": "Fixed",
@@ -63,7 +91,7 @@
     },
     {
       "name": "DE_6",
-      "index": 6,
+      "Index": 6,
       "description": "AMOUNT, CARDHOLDER BILLING Fee",
       "alias": "AMOUNT, CARDHOLDER BILLING Fee",
       "type": "Fixed",
@@ -77,7 +105,7 @@
     },
     {
       "name": "DE_7",
-      "index": 7,
+      "Index": 7,
       "description": "Date and Time, Transmission",
       "alias": "Date and Time, Transmission",
       "type": "Fixed",
@@ -90,21 +118,8 @@
       "paddingChar": ""
     },
     {
-      "name": "DE_8",
-      "index": 8,
-      "description": "AMOUNT, CARDHOLDER BILLING FEE",
-      "alias": "AMOUNT, CARDHOLDER BILLING FEE",
-      "type": "Fixed",
-      "size": "8",
-      "dataType": "Numeric",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
       "name": "DE_9",
-      "index": 9,
+      "Index": 9,
       "description": "Conversion Rate Reconciliation",
       "alias": "Conversion Rate Reconciliation",
       "type": "Fixed",
@@ -118,7 +133,7 @@
     },
     {
       "name": "DE_10",
-      "index": 10,
+      "Index": 10,
       "description": "Conversion Rate, Cardholder Billing",
       "alias": "Conversion Rate, Cardholder Billing",
       "type": "Fixed",
@@ -132,7 +147,7 @@
     },
     {
       "name": "DE_11",
-      "index": 11,
+      "Index": 11,
       "description": "SYSTEM TRACE AUDIT NUMBER",
       "alias": "SYSTEM TRACE AUDIT NUMBER",
       "type": "Fixed",
@@ -146,7 +161,7 @@
     },
     {
       "name": "DE_12",
-      "index": 12,
+      "Index": 12,
       "description": "Date and Time, Local Transaction",
       "alias": "Date and Time, Local Transaction",
       "type": "Fixed",
@@ -160,7 +175,7 @@
     },
     {
       "name": "DE_13",
-      "index": 13,
+      "Index": 13,
       "description": "Date Effective",
       "alias": "Date Effective",
       "type": "Fixed",
@@ -173,7 +188,7 @@
     },
     {
       "name": "DE_14",
-      "index": 14,
+      "Index": 14,
       "description": "Date, Expiration",
       "alias": "DATE, EXPIRATION",
       "type": "Fixed",
@@ -187,7 +202,7 @@
     },
     {
       "name": "DE_15",
-      "index": 15,
+      "Index": 15,
       "description": "DATE, SETTLEMENT",
       "alias": "DATE, SETTLEMENT",
       "type": "Fixed",
@@ -200,7 +215,7 @@
     },
     {
       "name": "DE_16",
-      "index": 16,
+      "Index": 16,
       "description": "DATE, CONVERSION",
       "alias": "DATE, CONVERSION",
       "type": "Fixed",
@@ -214,7 +229,7 @@
     },
     {
       "name": "DE_17",
-      "index": 17,
+      "Index": 17,
       "description": "DATE, CAPTURE",
       "alias": "DATE, CAPTURE",
       "type": "Fixed",
@@ -228,7 +243,7 @@
     },
     {
       "name": "DE_18",
-      "index": 18,
+      "Index": 18,
       "description": "MERCHANTS TYPE",
       "alias": "MERCHANTS TYPE",
       "type": "Fixed",
@@ -242,7 +257,7 @@
     },
     {
       "name": "DE_19",
-      "index": 19,
+      "Index": 19,
       "description": "Country Code, Acquiring Institution",
       "alias": "Country Code, Acquiring Institution",
       "type": "Fixed",
@@ -255,34 +270,8 @@
       "paddingChar": ""
     },
     {
-      "name": "DE_20",
-      "index": 20,
-      "description": "COUNTRY CODE PAN ",
-      "alias": "COUNTRY CODE PAN ",
-      "type": "Fixed",
-      "size": "3",
-      "dataType": "Numeric",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
-      "name": "DE_21",
-      "index": 21,
-      "description": " ",
-      "alias": "COUNTRY CODE FORWARDING INSTITUTION",
-      "type": "Fixed",
-      "size": "3",
-      "dataType": "Numeric",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
       "name": "DE_22",
-      "index": 22,
+      "Index": 22,
       "description": "Point of Service Data Code",
       "alias": "Point of Service Data Code",
       "type": "Fixed",
@@ -296,7 +285,7 @@
     },
     {
       "name": "DE_23",
-      "index": 23,
+      "Index": 23,
       "description": "CARD SEQUENCE NUMBER",
       "alias": "CARD SEQUENCE NUMBER",
       "type": "Fixed",
@@ -309,24 +298,10 @@
       "paddingChar": ""
     },
     {
-      "name": "DE_24",
-      "index": 24,
-      "description": "FUNCTION CODE",
-      "alias": "FUNCTION CODE",
-      "type": "Fixed",
-      "size": "3",
-      "dataType": "Numeric",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
-    },
-    {
-      "name": "DE_25",
-      "index": 25,
-      "description": "MESSAGE REASON CODE",
-      "alias": "MESSAGE REASON CODE",
+      "name": "DE_26",
+      "Index": 26,
+      "description": "CARD ACCEPTOR BUSINESS CODE",
+      "alias": "CARD ACCEPTOR BUSINESS CODE",
       "type": "Fixed",
       "size": "2",
       "dataType": "Numeric",
@@ -337,39 +312,12 @@
       "paddingChar": ""
     },
     {
-      "name": "DE_26",
-      "index": 26,
-      "description": "CARD ACCEPTOR BUSINESS CODE",
-      "alias": "CARD ACCEPTOR BUSINESS CODE",
-      "type": "Fixed",
-      "size": "4",
-      "dataType": "Numeric",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
-    },
-    {
-      "name": "DE_27",
-      "index": 27,
-      "description": "APPROVAL CODE LENGTH",
-      "alias": "APPROVAL CODE LEN",
-      "type": "Fixed",
-      "size": "1",
-      "dataType": "Numeric",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
       "name": "DE_28",
-      "index": 28,
+      "Index": 28,
       "description": "DATE RECONCILATION",
       "alias": "DATE RECONCILATION",
       "type": "Fixed",
-      "size": "6",
+      "size": "9",
       "dataType": "Numeric",
       "dataEncoding": "ASCII",
       "formats": {
@@ -379,11 +327,11 @@
     },
     {
       "name": "DE_29",
-      "index": 29,
+      "Index": 29,
       "description": "RECONCILATION INDICATOR",
       "alias": "RECONCILATION INDICATOR",
       "type": "Fixed",
-      "size": "3",
+      "size": "9",
       "dataType": "Numeric",
       "dataEncoding": "ASCII",
       "formats": {
@@ -391,36 +339,8 @@
       }
     },
     {
-      "name": "DE_30",
-      "index": 30,
-      "description": "Amounts, Original",
-      "alias": "Amounts, Original",
-      "type": "Fixed",
-      "size": "24",
-      "dataType": "Numeric",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
-    },
-    {
-      "name": "DE_31",
-      "index": 31,
-      "description": "Gateway Acquired Data",
-      "alias": "Gateway Acquired Data",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
-    },
-    {
       "name": "DE_32",
-      "index": 32,
+      "Index": 32,
       "description": "Acquiring Institution Identification Code",
       "alias": "Acquiring Institution Identification Code",
       "type": "Variable",
@@ -434,7 +354,7 @@
     },
     {
       "name": "DE_33",
-      "index": 33,
+      "Index": 33,
       "description": "Forwarding Institution Identification Code",
       "alias": "Forwarding Institution Identification Code",
       "type": "Variable",
@@ -447,22 +367,8 @@
       "paddingChar": ""
     },
     {
-      "name": "DE_34",
-      "index": 34,
-      "description": "Primary Account Number, Extended",
-      "alias": "Primary Account Number, Extended",
-      "type": "Variable",
-      "size": "2",
-      "dataType": "String",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
-    },
-    {
       "name": "DE_35",
-      "index": 35,
+      "Index": 35,
       "description": "Track 2 Data",
       "alias": "Track 2 Data",
       "type": "Variable",
@@ -475,21 +381,8 @@
       "paddingChar": ""
     },
     {
-      "name": "DE_36",
-      "index": 36,
-      "description": "TRACK 3 DATA",
-      "alias": "TRACK 3 DATA",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
       "name": "DE_37",
-      "index": 37,
+      "Index": 37,
       "description": "Retrieval Reference Number",
       "alias": "Retrieval Reference Number",
       "type": "Fixed",
@@ -503,9 +396,9 @@
     },
     {
       "name": "DE_38",
-      "index": 38,
-      "description": "APPROVAL CODE",
-      "alias": "APPROVAL CODE",
+      "Index": 38,
+      "description": "Authorization Response",
+      "alias": "Authorization Response",
       "type": "Fixed",
       "size": "6",
       "dataType": "String",
@@ -517,12 +410,12 @@
     },
     {
       "name": "DE_39",
-      "index": 39,
-      "description": "ACTION CODE",
-      "alias": "ACTION CODE",
+      "Index": 39,
+      "description": "Response Code",
+      "alias": "Response Code",
       "type": "Fixed",
       "size": "2",
-      "dataType": "Numeric",
+      "dataType": "String",
       "dataEncoding": "ASCII",
       "formats": {
         "ISO93": {}
@@ -531,7 +424,7 @@
     },
     {
       "name": "DE_40",
-      "index": 40,
+      "Index": 40,
       "description": "SERVICE CODE",
       "alias": "SERVICE CODE",
       "type": "Fixed",
@@ -544,7 +437,7 @@
     },
     {
       "name": "DE_41",
-      "index": 41,
+      "Index": 41,
       "description": "Card Acceptor Terminal Identification",
       "alias": "Card Acceptor Terminal Identification",
       "type": "Fixed",
@@ -558,7 +451,7 @@
     },
     {
       "name": "DE_42",
-      "index": 42,
+      "Index": 42,
       "description": "Card Acceptor Identification Code",
       "alias": "Card Acceptor Identification Code",
       "type": "Fixed",
@@ -572,7 +465,7 @@
     },
     {
       "name": "DE_43",
-      "index": 43,
+      "Index": 43,
       "description": "Card Acceptor Name/Location",
       "alias": "Card Acceptor Name/Location",
       "type": "Fixed",
@@ -585,34 +478,8 @@
       "paddingChar": ""
     },
     {
-      "name": "DE_44",
-      "index": 44,
-      "description": "ADITIONAL RESPONSE DATA",
-      "alias": "ADITIONAL RESPONSE DATA",
-      "type": "Variable",
-      "size": "2",
-      "dataType": "String",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
-      "name": "DE_45",
-      "index": 45,
-      "description": "TRACK 1 DATA",
-      "alias": "TRACK 1 DATA",
-      "type": "Variable",
-      "size": "2",
-      "dataType": "String",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
       "name": "DE_46",
-      "index": 46,
+      "Index": 46,
       "description": "AMOUNT FEES",
       "alias": "AMOUNT FEES",
       "type": "Variable",
@@ -626,7 +493,7 @@
     },
     {
       "name": "DE_47",
-      "index": 47,
+      "Index": 47,
       "description": "Data Record 2",
       "alias": "Data Record 2",
       "type": "Variable",
@@ -640,7 +507,7 @@
     },
     {
       "name": "DE_48",
-      "index": 48,
+      "Index": 48,
       "description": "Data Record 3",
       "alias": "Data Record 3",
       "type": "Variable",
@@ -654,7 +521,7 @@
     },
     {
       "name": "DE_49",
-      "index": 49,
+      "Index": 49,
       "description": "Currency Code, Transaction",
       "alias": "Currency Code, Transaction",
       "type": "Fixed",
@@ -668,7 +535,7 @@
     },
     {
       "name": "DE_50",
-      "index": 50,
+      "Index": 50,
       "description": "Currency Code, Reconciliation",
       "alias": "Currency Code, Reconciliation",
       "type": "Fixed",
@@ -682,7 +549,7 @@
     },
     {
       "name": "DE_51",
-      "index": 51,
+      "Index": 51,
       "description": "Currency Code, Cardholder Billing",
       "alias": "Currency Code, Cardholder Billing",
       "type": "Fixed",
@@ -696,7 +563,7 @@
     },
     {
       "name": "DE_52",
-      "index": 52,
+      "Index": 52,
       "description": "Personal Identification Number Data",
       "alias": "Personal Identification Number Data",
       "type": "Fixed",
@@ -709,21 +576,8 @@
       "paddingChar": ""
     },
     {
-      "name": "DE_53",
-      "index": 53,
-      "description": "SECURITY INFORMATION",
-      "alias": "SECURITY INFORMATION",
-      "type": "Variable",
-      "size": "2",
-      "dataType": "String",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
       "name": "DE_54",
-      "index": 54,
+      "Index": 54,
       "description": "Amounts, Additional",
       "alias": "Amounts, Additional",
       "type": "Variable",
@@ -737,7 +591,7 @@
     },
     {
       "name": "DE_55",
-      "index": 55,
+      "Index": 55,
       "description": "IC CARD DATA",
       "alias": "IC CARD DATA",
       "type": "Variable",
@@ -749,22 +603,8 @@
       }
     },
     {
-      "name": "DE_56",
-      "index": 56,
-      "description": "Original Data Elements",
-      "alias": "Original Data Elements",
-      "type": "Variable",
-      "size": "2",
-      "dataType": "String",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
-    },
-    {
       "name": "DE_57",
-      "index": 57,
+      "Index": 57,
       "description": "Authorization Life Cycle Code",
       "alias": "Authorization Life Cycle Code",
       "type": "Fixed",
@@ -778,11 +618,11 @@
     },
     {
       "name": "DE_58",
-      "index": 58,
+      "Index": 58,
       "description": "Authorizing Agent Institution Identification Code",
       "alias": "Authorizing Agent Institution Identification Code",
       "type": "Variable",
-      "size": "2",
+      "size": "3",
       "dataType": "Numeric",
       "dataEncoding": "ASCII",
       "formats": {
@@ -792,7 +632,7 @@
     },
     {
       "name": "DE_59",
-      "index": 59,
+      "Index": 59,
       "description": "Transport Data",
       "alias": "Transport Data",
       "type": "Variable",
@@ -806,38 +646,12 @@
     },
     {
       "name": "DE_60",
-      "index": 60,
-      "description": "RESERVED NATIONAL",
-      "alias": "RESERVED NATIONAL",
+      "Index": 60,
+      "description": "Advice Reason Code",
+      "alias": "Advice Reason Code",
       "type": "Variable",
       "size": "3",
       "dataType": "String",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
-      "name": "DE_61",
-      "index": 61,
-      "description": "RESERVED NATIONAL",
-      "alias": "RESERVED NATIONAL",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
-      "name": "DE_62",
-      "index": 62,
-      "description": "Network Identifier",
-      "alias": "Network Identifier",
-      "type": "Fixed",
-      "size": "6",
-      "dataType": "Numeric",
       "dataEncoding": "ASCII",
       "formats": {
         "ISO93": {}
@@ -845,12 +659,25 @@
       "paddingChar": ""
     },
     {
+      "name": "DE_61",
+      "Index": 61,
+      "description": "RESERVED NATIONAL",
+      "alias": "RESERVED NATIONAL",
+      "type": "Variable",
+      "size": "3",
+      "dataType": "String",
+      "dataEncoding": "ASCII",
+      "formats": {
+        "ISO93": {}
+      }
+    },
+    {
       "name": "DE_63",
-      "index": 63,
+      "Index": 63,
       "description": "Network Settlement Date",
       "alias": "Network Settlement Date",
       "type": "Variable",
-      "size": "4",
+      "size": "3",
       "dataType": "Numeric",
       "dataEncoding": "ASCII",
       "formats": {
@@ -1204,7 +1031,7 @@
       "description": "AUTHORIZATIONS REVERSAL NUMBER",
       "alias": "AUTHORIZATIONS REVERSAL NUMBER",
       "type": "Fixed",
-      "size": "10",
+      "size": "42",
       "dataType": "String",
       "dataEncoding": "ASCII",
       "formats": {
@@ -1270,8 +1097,8 @@
       "index": 95,
       "description": "CM2 Data Record 1",
       "alias": "CM2 Data Record 1",
-      "type": "Variable",
-      "size": "4",
+      "type": "Fixed",
+      "size": "42",
       "dataType": "String",
       "dataEncoding": "ASCII",
       "formats": {
@@ -1362,7 +1189,7 @@
     },
     {
       "name": "DE_102",
-      "index": 102,
+      "Index": 102,
       "description": "Account Identification 1",
       "alias": "Account Identification 1",
       "type": "Variable",
@@ -1376,7 +1203,7 @@
     },
     {
       "name": "DE_103",
-      "index": 103,
+      "Index": 103,
       "description": "ACCOUNT IDENTIFICATION 2",
       "alias": "ACCOUNT IDENTIFICATION 2",
       "type": "Variable",
@@ -1390,7 +1217,7 @@
     },
     {
       "name": "DE_104",
-      "index": 104,
+      "Index": 104,
       "description": "TRANSACTION DESCRIPTION",
       "alias": "TRANSACTION DESCRIPTION",
       "type": "Variable",
@@ -1402,64 +1229,12 @@
       }
     },
     {
-      "name": "DE_105",
-      "index": 105,
-      "description": "CREDITS CHARGEBACK AMOUNT",
-      "alias": "CREDITS CHARGEBACK AMOUNT",
-      "type": "Fixed",
-      "size": "16",
-      "dataType": "Numeric",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
-      "name": "DE_106",
-      "index": 106,
-      "description": "DEBITS CHARGEBACK AMOUNT",
-      "alias": "DEBITS CHARGEBACK AMOUNT",
-      "type": "Fixed",
-      "size": "16",
-      "dataType": "Numeric",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
-      "name": "DE_107",
-      "index": 107,
-      "description": "CREDITS CHARGEBACK NUMBER",
-      "alias": "CREDITS CHARGEBACK NUMBER",
-      "type": "Fixed",
-      "size": "10",
-      "dataType": "Numeric",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
-      "name": "DE_108",
-      "index": 108,
-      "description": "DEBITS  CHARGEBACK NUMBER",
-      "alias": "DEBITS  CHARGEBACK NUMBER",
-      "type": "Fixed",
-      "size": "10",
-      "dataType": "Numeric",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
       "name": "DE_109",
-      "index": 109,
+      "Index": 109,
       "description": "CREDITS FEE AMOUNT",
       "alias": "CREDITS FEE AMOUNT",
       "type": "Variable",
-      "size": "2",
+      "size": "3",
       "dataType": "String",
       "dataEncoding": "ASCII",
       "formats": {
@@ -1468,11 +1243,11 @@
     },
     {
       "name": "DE_110",
-      "index": 110,
+      "Index": 110,
       "description": "DEBITS FEE AMOUNT",
       "alias": "DEBITS FEE AMOUNT",
       "type": "Variable",
-      "size": "2",
+      "size": "3",
       "dataType": "String",
       "dataEncoding": "ASCII",
       "formats": {
@@ -1481,11 +1256,11 @@
     },
     {
       "name": "DE_111",
-      "index": 111,
+      "Index": 111,
       "description": "Data Record 4",
       "alias": "Data Record 4",
       "type": "Variable",
-      "size": "4",
+      "size": "3",
       "dataType": "String",
       "dataEncoding": "ASCII",
       "formats": {
@@ -1494,101 +1269,10 @@
       "paddingChar": ""
     },
     {
-      "name": "DE_112",
-      "index": 112,
-      "description": "ISO RESERVED ",
-      "alias": "ISO RESERVED ",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
       "name": "DE_113",
-      "index": 113,
+      "Index": 113,
       "description": "ISO RESERVED ",
       "alias": "ISO RESERVED ",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
-      "name": "DE_114",
-      "index": 114,
-      "description": "ISO RESERVED ",
-      "alias": "ISO RESERVED ",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
-      "name": "DE_115",
-      "index": 115,
-      "description": "ISO RESERVED ",
-      "alias": "ISO RESERVED ",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
-      "name": "DE_116",
-      "index": 116,
-      "description": "NATIONAL USE RESERVED ",
-      "alias": "NATIONAL USE RESERVED ",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
-      "name": "DE_117",
-      "index": 117,
-      "description": "NATIONAL USE RESERVED ",
-      "alias": "NATIONAL USE RESERVED ",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
-      "name": "DE_118",
-      "index": 118,
-      "description": "NATIONAL USE RESERVED ",
-      "alias": "NATIONAL USE RESERVED ",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
-      "name": "DE_119",
-      "index": 119,
-      "description": "NATIONAL USE RESERVED ",
-      "alias": "NATIONAL USE RESERVED ",
       "type": "Variable",
       "size": "3",
       "dataType": "String",
@@ -1599,20 +1283,7 @@
     },
     {
       "name": "DE_120",
-      "index": 120,
-      "description": "NATIONAL USE RESERVED ",
-      "alias": "NATIONAL USE RESERVED ",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      }
-    },
-    {
-      "name": "DE_121",
-      "index": 121,
+      "Index": 120,
       "description": "NATIONAL USE RESERVED ",
       "alias": "NATIONAL USE RESERVED ",
       "type": "Variable",
@@ -1625,7 +1296,7 @@
     },
     {
       "name": "DE_122",
-      "index": 122,
+      "Index": 122,
       "description": "NATIONAL USE RESERVED ",
       "alias": "NATIONAL USE RESERVED ",
       "type": "Variable",
@@ -1638,7 +1309,7 @@
     },
     {
       "name": "DE_123",
-      "index": 123,
+      "Index": 123,
       "description": "Data 1",
       "alias": "Data 1",
       "type": "Variable",
@@ -1652,7 +1323,7 @@
     },
     {
       "name": "DE_124",
-      "index": 124,
+      "Index": 124,
       "description": "Data 2",
       "alias": "Data 2",
       "type": "Variable",
@@ -1665,54 +1336,12 @@
       "paddingChar": ""
     },
     {
-      "name": "DE_125",
-      "index": 125,
-      "description": "Data 3",
-      "alias": "Data 3",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
-    },
-    {
-      "name": "DE_126",
-      "index": 126,
-      "description": "Additional Data 3",
-      "alias": "Additional Data 3",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
-    },
-    {
       "name": "DE_127",
-      "index": 127,
+      "Index": 127,
       "description": "Additional Data 4",
       "alias": "Additional Data 4",
       "type": "Variable",
-      "size": "4",
-      "dataType": "String",
-      "dataEncoding": "ASCII",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
-    },
-    {
-      "name": "DE_128",
-      "index": 128,
-      "description": "MICR Data",
-      "alias": "MICR Data",
-      "type": "Fixed",
-      "size": "5",
+      "size": "3",
       "dataType": "String",
       "dataEncoding": "ASCII",
       "formats": {
@@ -1725,7 +1354,7 @@
     {
       "Name": "AuthRequest",
       "Description": "",
-      "Alias": "1100",
+      "Alias": "0100",
       "Type": "Request",
       "Identifier": [ "6", "7", "11" ],
       "Fields": [ "6", "11" ]
@@ -1733,7 +1362,7 @@
     {
       "Name": "PurchaseRequest",
       "Description": "",
-      "Alias": "1200",
+      "Alias": "0200",
       "Type": "Request",
       "Identifier": [ "6", "7", "11" ],
       "Fields": [ "6", "11" ]
@@ -1741,7 +1370,7 @@
     {
       "Name": "PurchaseRequest1",
       "Description": "",
-      "Alias": "0200",
+      "Alias": "0400",
       "Type": "Request",
       "Identifier": [ "6", "7", "11" ],
       "Fields": [ "6", "11" ]
@@ -1749,7 +1378,7 @@
     {
       "Name": "PurchaseResponce",
       "Description": "",
-      "Alias": "0210",
+      "Alias": "0800",
       "Type": "Request",
       "Identifier": [ "6", "7", "11" ],
       "Fields": [ "6", "11" ]

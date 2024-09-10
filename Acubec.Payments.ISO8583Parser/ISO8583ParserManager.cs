@@ -2,15 +2,10 @@
 using Acubec.Payments.ISO8583Parser.Definitions;
 using Acubec.Payments.ISO8583Parser.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Acubec.Payments.ISO8583Parser;
 
-public static class  ISO8583ParserManager
+public static class ISO8583ParserManager
 {
     public static IServiceCollection AddISO8583Parser(this IServiceCollection services)
     {

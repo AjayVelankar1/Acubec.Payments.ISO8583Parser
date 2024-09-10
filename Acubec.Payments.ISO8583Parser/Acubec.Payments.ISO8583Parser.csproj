@@ -18,6 +18,7 @@ This library is similar  of the popular jPOS library in JAVA.
 		<PackageReleaseNotes>This is first version. please report any issue on git and will start supporting.</PackageReleaseNotes>
 		<PackAsTool>False</PackAsTool>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<Version>1.0.6</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

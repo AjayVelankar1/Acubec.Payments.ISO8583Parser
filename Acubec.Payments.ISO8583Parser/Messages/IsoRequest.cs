@@ -1,13 +1,8 @@
-﻿using Acubec.Payments.ISO8583Parser.Helpers;
-using Acubec.Payments.ISO8583Parser.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using Acubec.Payments.ISO8583Parser.Interfaces;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Acubec.Payments.ISO8583Parser.Messages;
+
 
 internal class IsoRequest : IIsoMessage
 {
@@ -30,11 +25,11 @@ internal class IsoRequest : IIsoMessage
         _fields = new();
     }
 
-    public int ByteMapLength=> _byteMapLength;
+    public int ByteMapLength => _byteMapLength;
 
     public bool IsAdviceMessage
     {
-        get;set;
+        get; set;
     }
 
     public bool IsFinancialTransaction
@@ -76,7 +71,7 @@ internal class IsoRequest : IIsoMessage
     public DateTime NetworkReceivedTime { get; set; }
     public string SAFId { get; set; }
     public string TransactionId { get; set; }
-   
+
     public override string ToString()
     {
         return base.ToString();
@@ -94,4 +89,3 @@ internal abstract class IsoResponse : IsoRequest
     public string ResponseCode { get; }
 
 }
-
