@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Acubec.Payments.ISO8583Parser.Definitions;
 
-internal sealed class BinaryEncoderFormator: IEncoderFormator
+internal sealed class BinaryEncoderFormator : IEncoderFormator
 {
     public string Encode(byte[] value)
     {
@@ -15,6 +15,20 @@ internal sealed class BinaryEncoderFormator: IEncoderFormator
     public byte[] Decode(string value)
     {
         return Encoding.UTF8.GetBytes(value);
+    }
+}
+
+
+internal sealed class HexFormator : IEncoderFormator
+{
+    public string Encode(byte[] value)
+    {
+        return ByteHelper.GetHexRepresentation(value);
+    }
+
+    public byte[] Decode(string value)
+    {
+        return ByteHelper.GetBitmapFromHexString(value);
     }
 }
 

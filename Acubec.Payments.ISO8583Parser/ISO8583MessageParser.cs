@@ -3,6 +3,7 @@ using Acubec.Payments.ISO8583Parser.Definitions;
 using Acubec.Payments.ISO8583Parser.Helpers;
 using Acubec.Payments.ISO8583Parser.Interfaces;
 using Acubec.Payments.ISO8583Parser.Messages;
+using Microsoft.Extensions.DependencyInjection;
 using System.Text;
 
 namespace Acubec.Payments.ISO8583Parser;
@@ -11,25 +12,30 @@ public sealed class ISO8583MessageParser
     private readonly IServiceProvider _serviceProvider;
     StringBuilder _logDump;
     StringBuilder _hexDump;
+    private readonly SchemaConfiguration _schemaConfiguration;
+
     public string LogDump => _logDump.ToString();
     public string HexDump => _hexDump.ToString();
-    public ISO8583MessageParser(IServiceProvider serviceProvider)
+    public ISO8583MessageParser(IServiceProvider serviceProvider, SchemaConfiguration schemaConfiguration)
     {
         _logDump = new();
         _hexDump = new();
         _serviceProvider = serviceProvider;
+        _schemaConfiguration = schemaConfiguration;
     }
 
-    public IIsoMessage Parse(SchemaConfiguration schemaConfiguration, byte[] messageBytes, IServiceProvider serviceProvider)
+    public IIsoMessage Parse(byte[] messageBytes, IServiceProvider serviceProvider)
     {
         var mtiParser = (IMTIParser)_serviceProvider.GetService(typeof(IMTIParser));
 
         //Parsing MTI
         var mti = mtiParser.ParseMTI(messageBytes);
-        var isoMessage = getMessage(mti, schemaConfiguration);
-        parse(isoMessage, messageBytes, schemaConfiguration.SchemaEncoding);
+        var isoMessage = getMessage(mti, _schemaConfiguration);
+        parse(isoMessage, messageBytes, _schemaConfiguration.SchemaEncoding);
         return isoMessage;
     }
+
+
 
     public byte[] ToBytes(IIsoMessage message, DataEncoding encoding)
     {
@@ -121,6 +127,7 @@ public sealed class ISO8583MessageParser
         int skipBytes = 0;
         int multiplyer = 1;
         byte[] b = Array.Empty<byte>();
+        var encoder = _serviceProvider.GetKeyedService<IEncoderFormator>(encoding.ToString());
 
         StringBuilder _logDump = new();
         _logDump.Append($"Start converting byte array to ISOMessage MTI: {isoRequest.MessageType}{Environment.NewLine}");
@@ -128,58 +135,33 @@ public sealed class ISO8583MessageParser
 
         Dictionary<int, IIsoField> fields = isoRequest.Fields;
         int offset = skipBytes + 4;
+        multiplyer = 1;
+        if (encoding == DataEncoding.ASCII) multiplyer = 2;
 
         for (int i = 0; i < isoRequest.ByteMapLength; i++)
         {
 
-            if (encoding == DataEncoding.Binary)
+            int v;
+            if (i > 0)
             {
-                int v;
-                if (i > 0)
-                {
-                    var pByteMap = isoRequest.ByteMap.getBitMap(i - 1);
-                    v = pByteMap[0] >> 7 & 0x01;
-                }
-                else
-                {
-                    v = 1;
-                }
-
-                if (v == 0x01)
-                {
-                    multiplyer = 1;
-                    b = dataByte.GetByteSlice(8 * multiplyer, offset);
-                }
-                else
-                {
-                    break;
-                }
+                var pByteMap = isoRequest.ByteMap.getBitMap(i - 1);
+                v = pByteMap[0] >> 7 & 0x01;
             }
             else
             {
-                multiplyer = 2;
-                int v;
-                if (i > 0)
-                {
-                    var pByteMap = isoRequest.ByteMap.getBitMap(i - 1);
-                    v = pByteMap[0] >> 7 & 0x01;
-                }
-                else
-                {
-                    v = 1;
-                }
+                v = 1;
+            }
 
-                if (v == 0x01)
-                {
-                    b = dataByte.GetByteSlice(8 * multiplyer, offset);
-                    var str = Encoding.ASCII.GetString(b);
+            if (v == 0x01)
+            {
+                b = dataByte.GetByteSlice(8 * multiplyer, offset);
+                var str = encoder.Encode(b);
+                if (encoding == DataEncoding.ASCII)
                     b = ByteHelper.convertHexToBinaryUsingConvert(str);
-                }
-                else
-                {
-                    break;
-                }
-
+            }
+            else
+            {
+                break;
             }
             isoRequest.ByteMap.SetBitMap(i, b);
             offset += 8 * multiplyer;
