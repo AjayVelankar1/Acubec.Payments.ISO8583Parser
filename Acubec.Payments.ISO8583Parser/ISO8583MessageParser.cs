@@ -35,6 +35,16 @@ public sealed class ISO8583MessageParser
         return isoMessage;
     }
 
+    public IIsoMessage GetMTI(byte[] messageBytes)
+    {
+        var mtiParser = (IMTIParser)_serviceProvider.GetService(typeof(IMTIParser));
+
+        //Parsing MTI
+        var mti = mtiParser.ParseMTI(messageBytes);
+        var isoMessage = getMessage(mti, _schemaConfiguration);
+        return isoMessage;
+    }
+
 
 
     public byte[] ToBytes(IIsoMessage message, DataEncoding encoding)
