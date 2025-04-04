@@ -22,6 +22,7 @@ public abstract class BaseIsoField : IIsoField
     protected int _messageIndex;
     protected DataEncoding _encoding;
     protected IServiceProvider _serviceProvider;
+    protected DataEncoding _headerLengthEncoding;
     #endregion Fields
 
     #region Protected Constructors
@@ -41,7 +42,8 @@ public abstract class BaseIsoField : IIsoField
     /// <param name="length">Length of the message.</param>
     /// <param name="isMandatory">if set to <c>true</c> [is mandatory].</param>
     protected BaseIsoField(string name, IsoTypes type, int length, int messageIndex
-        , ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding dataEncoding = DataEncoding.ASCII)
+        , ByteMaps byteMap, IServiceProvider serviceProvider,
+        DataEncoding dataEncoding , DataEncoding headerLengthEncoding)
     {
         Name = name;
         Type = type;
@@ -50,6 +52,7 @@ public abstract class BaseIsoField : IIsoField
         _byteMap = byteMap;
         _encoding = dataEncoding;
         _serviceProvider = serviceProvider;
+        _headerLengthEncoding = headerLengthEncoding;
     }
 
     #endregion Protected Constructors
@@ -81,7 +84,7 @@ public abstract class BaseIsoField : IIsoField
     public virtual string LogDump()
     {
         var encoder = _serviceProvider.GetKeyedService<IEncoderFormator>(_encoding.ToString());
-        var value = _encoding == DataEncoding.ASCII ? Value : BitConverter.ToString(encoder.Decode(Value));
+        var value = _encoding == DataEncoding.Binary ? BitConverter.ToString(encoder.Decode(Value)): Value;
         if (Mask)
         {
             if (value?.Length > 4)
@@ -97,7 +100,7 @@ public abstract class BaseIsoField : IIsoField
     }
 
     public abstract override string ToString();
-    public abstract int SetValueBytes(byte[] dataByte, int offset);
+    public abstract int SetValueBytes(Span<byte> dataByte, int offset);
 
     public int MessageIndex { get { return _messageIndex; } }
 

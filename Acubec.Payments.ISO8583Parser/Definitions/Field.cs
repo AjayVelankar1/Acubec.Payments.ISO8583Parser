@@ -31,5 +31,7 @@ public sealed class Field
     public DataEncoding DataEncoding { get; set; }
     public bool isPaddingRequired { get; set; }
     public bool Mask { get; set; }
+
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public DataEncoding HeaderLengthEncoding { get; set; }
 }

@@ -1,4 +1,5 @@
-﻿using Acubec.Payments.ISO8583Parser.Helpers;
+﻿using Acubec.Payments.ISO8583Parser.Definitions;
+using Acubec.Payments.ISO8583Parser.Helpers;
 using Acubec.Payments.ISO8583Parser.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System.Globalization;
@@ -20,10 +21,10 @@ public class IsoBaseVariableLengthField : BaseIsoField, IIsoField
     public IsoBaseVariableLengthField(string name, short length, int messageIndex,
         ByteMaps byteMap,
         IServiceProvider serviceProvider,
-        DataEncoding dataEncoding = DataEncoding.ASCII,
-        DataEncoding headerLengthEncoding = DataEncoding.ASCII,
+        DataEncoding dataEncoding,
+        DataEncoding headerLengthEncoding,
         short bitMapLength = 2)
-        : base(name, IsoTypes.LLVar, length, messageIndex, byteMap, serviceProvider, dataEncoding)
+        : base(name, IsoTypes.LLVar, length, messageIndex, byteMap, serviceProvider, dataEncoding,headerLengthEncoding)
     {
         _bitMapLength = bitMapLength;
         _originalLength = length;
@@ -72,25 +73,35 @@ public class IsoBaseVariableLengthField : BaseIsoField, IIsoField
         return Value.Length.ToString(CultureInfo.InvariantCulture).PadLeft(_originalLength, '0') + Value;
     }
 
-    public override int SetValueBytes(byte[] dataByte, int offset)
+    public override int SetValueBytes(Span<byte> dataByte, int offset)
     {
         var encoder = _serviceProvider.GetKeyedService<IEncoderFormator>(_encoding.ToString());
         var lengthEncoder = _serviceProvider.GetKeyedService<IEncoderFormator>(_headerLengthEncoding.ToString());
+        var length = _length;
+        if (_headerLengthEncoding == DataEncoding.HEX)
+        {
+            length = 1;
+        }
 
-        var bytes = dataByte.GetByteSlice(_length, offset);
+        var bytes = dataByte.GetByteSlice(length, offset);
         string strLen = lengthEncoder.Encode(bytes);
-        var dataLength = Convert.ToInt32(strLen, CultureInfo.InvariantCulture);
 
+        if (_headerLengthEncoding == DataEncoding.HEX)
+        {
+            strLen = bytes[0].ToString();
+        }
+
+        var dataLength = Convert.ToInt32(strLen, CultureInfo.InvariantCulture);
+        if (_headerLengthEncoding == DataEncoding.HEX)
+        {
+            dataLength = dataLength / 2;
+            if (dataLength % 2 != 0) ++length;
+        }
         //strLen = dataLength.ToString(CultureInfo.InvariantCulture).PadLeft(_originalLength, '0');
 
-        bytes = dataByte.GetByteSlice(dataLength, offset + _length);
+        bytes = dataByte.GetByteSlice(dataLength, offset + length);
         Value = encoder.Encode(bytes);
-
-        //string strLen = Encoding.UTF8.GetString(dataByte, offset, _length);
-        //var dataLength = Convert.ToInt32(strLen, CultureInfo.InvariantCulture);
-        //Value = Encoding.UTF8.GetString(dataByte, offset + _bitMapLength+ 1, dataLength);
-
-        return dataLength + Length;
+        return dataLength + length;
     }
 
 

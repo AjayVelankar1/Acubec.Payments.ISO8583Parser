@@ -10,4 +10,8 @@ public interface IEncoderFormator
 {
     string Encode(byte[] value);
     byte[] Decode(string value);
+
+    public string Encode(ReadOnlySpan<byte> value);
+
+    public Span<byte> DecodeSpan(string value);
 }

@@ -34,4 +34,8 @@ This library is similar  of the popular jPOS library in JAVA.
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="Acubec.Payment360.Tests" />
+	</ItemGroup>
+
 </Project>

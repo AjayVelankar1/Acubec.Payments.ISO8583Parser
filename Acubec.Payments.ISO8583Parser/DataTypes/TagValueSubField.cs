@@ -8,13 +8,13 @@ public class TagValueSubField : IsoBaseVariableLengthField
 
     readonly Dictionary<string, string> _subField = new Dictionary<string, string>();
 
-    public TagValueSubField(string name, short length, int messageIndex, ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding dataEncoding = DataEncoding.ASCII, DataEncoding headerLengthEncoding = DataEncoding.ASCII, short bitMapLength = 2) : base(name, length, messageIndex, byteMap, serviceProvider, dataEncoding, headerLengthEncoding, bitMapLength)
+    public TagValueSubField(string name, short length, int messageIndex, ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding dataEncoding , DataEncoding headerLengthEncoding, short bitMapLength = 2) : base(name, length, messageIndex, byteMap, serviceProvider, dataEncoding, headerLengthEncoding, bitMapLength)
     {
     }
 
     public Dictionary<string, string> SubFields { get { return _subField; } }
 
-    public override int SetValueBytes(byte[] dataByte, int offset)
+    public override int SetValueBytes(Span<byte> dataByte, int offset)
     {
         var s = base.SetValueBytes(dataByte, offset);
 

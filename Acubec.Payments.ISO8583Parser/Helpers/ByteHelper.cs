@@ -41,6 +41,17 @@ public static class ByteHelper
         }
     }
 
+    public static string ByteSpanToHexString(this ReadOnlySpan<byte> bData)
+    {
+        StringBuilder stringBuilder = new StringBuilder(bData.Length * 2);
+        for (int i = 0; i < bData.Length; i++)
+        {
+            stringBuilder.AppendFormat("{0:X2}", bData[i]);
+        }
+
+        return stringBuilder.ToString();
+    }
+
     public static string ByteArrayToHexString(this byte[] bData)
     {
         StringBuilder stringBuilder = new StringBuilder();
@@ -68,11 +79,33 @@ public static class ByteHelper
         return array;
     }
 
+
+    public static byte[] Combine(Span<byte> span1, Span<byte> span2)
+    {
+        byte[] combined = new byte[span1.Length + span2.Length];
+        span1.CopyTo(combined);
+        span2.CopyTo(combined.AsSpan(span1.Length));
+        return combined;
+    }
+
+    public static Span<byte> CombineSPan(Span<byte> span1, Span<byte> span2)
+    {
+        byte[] combined = new byte[span1.Length + span2.Length];
+        span1.CopyTo(combined);
+        span2.CopyTo(combined.AsSpan(span1.Length));
+        return combined;
+    }
+
     public static byte[] GetByteSlice(this byte[] dataByte, int length, int startIndex)
     {
         byte[] array = new byte[length];
         Array.Copy(dataByte, startIndex, array, 0, length);
         return array;
+    }
+
+    public static Span<byte> GetByteSlice(this Span<byte> dataByte, int length, int startIndex)
+    {
+        return dataByte.Slice(startIndex, length);
     }
 
     public static string ToString(this byte[] array)
@@ -180,6 +213,11 @@ public static class ByteHelper
 
     public static string HexDump(byte[] bytes, int bytesPerLine = 16)
     {
+        return HexDump(bytes.AsSpan(), bytesPerLine);
+    }
+
+    public static string HexDump(Span<byte> bytes, int bytesPerLine = 16)
+    {
         if (bytes == null)
         {
             return "<null>";
@@ -281,6 +319,17 @@ public static class ByteHelper
     }
 
     internal static byte[] convertBinaryToHexUsingConvert(byte[] ba)
+    {
+        StringBuilder hex = new StringBuilder(ba.Length * 2);
+        foreach (byte b in ba)
+        {
+            hex.AppendFormat("{0:x2}", b);
+        }
+
+        return Encoding.ASCII.GetBytes(hex.ToString());
+    }
+
+    internal static byte[] convertBinaryToHexUsingConvert(Span<byte> ba)
     {
         StringBuilder hex = new StringBuilder(ba.Length * 2);
         foreach (byte b in ba)

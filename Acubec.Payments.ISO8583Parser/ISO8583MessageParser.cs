@@ -13,6 +13,7 @@ public sealed class ISO8583MessageParser
     StringBuilder _logDump;
     StringBuilder _hexDump;
     private readonly SchemaConfiguration _schemaConfiguration;
+    private readonly IMTIParser _mtiParser;
 
     public string LogDump => _logDump.ToString();
     public string HexDump => _hexDump.ToString();
@@ -22,14 +23,14 @@ public sealed class ISO8583MessageParser
         _hexDump = new();
         _serviceProvider = serviceProvider;
         _schemaConfiguration = schemaConfiguration;
+        _mtiParser = (IMTIParser)_serviceProvider.GetKeyedService<IMTIParser>(_schemaConfiguration.MTIParser?? "ASCII");
     }
 
     public IIsoMessage Parse(byte[] messageBytes, IServiceProvider serviceProvider)
     {
-        var mtiParser = (IMTIParser)_serviceProvider.GetService(typeof(IMTIParser));
+        var bytes = messageBytes.AsSpan<byte>();
 
-        //Parsing MTI
-        var mti = mtiParser.ParseMTI(messageBytes);
+        var mti = _mtiParser.ParseMTI(messageBytes);
         var isoMessage = getMessage(mti, _schemaConfiguration);
         parse(isoMessage, messageBytes, _schemaConfiguration.SchemaEncoding);
         return isoMessage;
@@ -37,17 +38,12 @@ public sealed class ISO8583MessageParser
 
     public IIsoMessage GetMTI(byte[] messageBytes)
     {
-        var mtiParser = (IMTIParser)_serviceProvider.GetService(typeof(IMTIParser));
-
-        //Parsing MTI
-        var mti = mtiParser.ParseMTI(messageBytes);
+        var mti = _mtiParser.ParseMTI(messageBytes);
         var isoMessage = getMessage(mti, _schemaConfiguration);
         return isoMessage;
     }
 
-
-
-    public byte[] ToBytes(IIsoMessage message, DataEncoding encoding)
+    public Span<byte> ToBytes(IIsoMessage message, DataEncoding encoding)
     {
         var mtiParser = (IMTIParser)_serviceProvider.GetService(typeof(IMTIParser));
         return ((IsoRequest)message).ByteMap.GetDataByte(encoding, mtiParser);
@@ -102,13 +98,13 @@ public sealed class ISO8583MessageParser
             {
 
                 "Variable" => new IsoBaseVariableLengthField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding, field.HeaderLengthEncoding),
-                "TagValueSubField" => (IIsoField)new TagValueSubField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding),
-                "Fixed" => new IsoAlphaNumericFixedField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider),
-                "ProcessingCode" => (IIsoField)new ProcessingCodeDataField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding),
-                "CardholderBillingConversionRate" => (IIsoField)new CardHolderBillingConversionRateField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding),
-                "PosEntryMode" => (IIsoField)new POSEntryModeField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding),
-                "CardAcceptorNameLocation" => (IIsoField)new CardAcceptorNameLocationField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding),
-                "ReplacementAmounts" => (IIsoField)new ReplacementAmountsField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding),
+                "TagValueSubField" => (IIsoField)new TagValueSubField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding, field.HeaderLengthEncoding),
+                "Fixed" => new IsoAlphaNumericFixedField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding, field.HeaderLengthEncoding),
+                "ProcessingCode" => (IIsoField)new ProcessingCodeDataField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding, field.HeaderLengthEncoding),
+                "CardholderBillingConversionRate" => (IIsoField)new CardHolderBillingConversionRateField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding, field.HeaderLengthEncoding),
+                "PosEntryMode" => (IIsoField)new POSEntryModeField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding, field.HeaderLengthEncoding),
+                "CardAcceptorNameLocation" => (IIsoField)new CardAcceptorNameLocationField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding, field.HeaderLengthEncoding),
+                "ReplacementAmounts" => (IIsoField)new ReplacementAmountsField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding, field.HeaderLengthEncoding),
                 _ => customFieldFactory.GetField(field, byteMap)
             };
             if (isoFiled != null)
@@ -123,28 +119,28 @@ public sealed class ISO8583MessageParser
         }
     }
 
-    private void parse(IsoRequest isoRequest, byte[] messageBytes, DataEncoding encoding)
+    private void parse(IsoRequest isoRequest, Span<byte> messageBytes, DataEncoding encoding)
     {
         StringBuilder logDump = new();
-        var offSet = parseByteMap(isoRequest, messageBytes, encoding);
+        var offSet = parseByteMap(isoRequest, messageBytes, encoding,_mtiParser);
         parseData(isoRequest, messageBytes, encoding, offSet);
         _hexDump.Append(ByteHelper.HexDump(messageBytes));
     }
 
-    private int parseByteMap(IsoRequest isoRequest, byte[] messageBytes, DataEncoding encoding)
+    private int parseByteMap(IsoRequest isoRequest, Span<byte> messageBytes, DataEncoding encoding, IMTIParser mtiParser)
     {
         var dataByte = messageBytes;
         int skipBytes = 0;
         int multiplyer = 1;
-        byte[] b = Array.Empty<byte>();
+        Span<byte> b = Array.Empty<byte>();
         var encoder = _serviceProvider.GetKeyedService<IEncoderFormator>(encoding.ToString());
 
         StringBuilder _logDump = new();
         _logDump.Append($"Start converting byte array to ISOMessage MTI: {isoRequest.MessageType}{Environment.NewLine}");
-        _logDump.Append($"Raw byte array is{Environment.NewLine} {BitConverter.ToString(messageBytes)}{Environment.NewLine}");
+        _logDump.Append($"Raw byte array is{Environment.NewLine} {ByteHelper.ByteSpanToHexString(messageBytes)}{Environment.NewLine}");
 
         Dictionary<int, IIsoField> fields = isoRequest.Fields;
-        int offset = skipBytes + 4;
+        int offset = skipBytes + mtiParser.SkipBytes;
         multiplyer = 1;
         if (encoding == DataEncoding.ASCII) multiplyer = 2;
 
@@ -179,7 +175,7 @@ public sealed class ISO8583MessageParser
         return offset;
     }
 
-    private int parseData(IsoRequest isoRequest, byte[] messageBytes, DataEncoding encoding, int offset)
+    private int parseData(IsoRequest isoRequest, Span<byte> messageBytes, DataEncoding encoding, int offset)
     {
         var i = 0;
         try

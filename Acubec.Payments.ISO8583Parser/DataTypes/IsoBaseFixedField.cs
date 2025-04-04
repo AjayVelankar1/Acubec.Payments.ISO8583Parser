@@ -14,8 +14,8 @@ public abstract class IsoBaseFixedField : BaseIsoField, IIsoField
     /// <param name="name">The name.</param>
     /// <param name="length">The length.</param>
     /// <param name="isMandatory">if set to <c>true</c> [is mandatory].</param>
-    public IsoBaseFixedField(string name, int length, int messageIndex, ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding dataEncoding = DataEncoding.ASCII)
-        : base(name, IsoTypes.Fixed, length, messageIndex, byteMap, serviceProvider, dataEncoding)
+    public IsoBaseFixedField(string name, int length, int messageIndex, ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding dataEncoding = DataEncoding.ASCII, DataEncoding headerLengthEncoding = DataEncoding.ASCII)
+        : base(name, IsoTypes.Fixed, length, messageIndex, byteMap, serviceProvider, dataEncoding, headerLengthEncoding)
     {
 
     }
@@ -34,13 +34,21 @@ public abstract class IsoBaseFixedField : BaseIsoField, IIsoField
         return Value;
     }
 
-    public override int SetValueBytes(byte[] dataByte, int offset)
+    public override int SetValueBytes(Span<byte> dataByte, int offset)
     {
         var encoder = _serviceProvider.GetKeyedService<IEncoderFormator>(_encoding.ToString());
-        var bytes = dataByte.GetByteSlice(Length, offset);
+        var length = _length;
+        if (_headerLengthEncoding == DataEncoding.HEX)
+        {
+            length = Length / 2;
+            if (Length % 2 != 0) ++length;
+        }
+
+
+        var bytes = dataByte.GetByteSlice(length, offset);
         Value = encoder.Encode(bytes);
         _byteMap.SetValue(MessageIndex, this);
-        return Length;
+        return length;
     }
 
     #endregion Public Methods

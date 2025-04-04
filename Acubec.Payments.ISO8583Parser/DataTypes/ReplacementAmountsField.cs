@@ -99,7 +99,7 @@ public class ReplacementAmountsField : IsoBaseFixedField
 
     }
 
-    public ReplacementAmountsField(string name, int length, int messageIndex, ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding dataEncoding = DataEncoding.ASCII) : base(name, length, messageIndex, byteMap, serviceProvider, dataEncoding)
+    public ReplacementAmountsField(string name, int length, int messageIndex, ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding dataEncoding , DataEncoding headerLengthEncoding) : base(name, length, messageIndex, byteMap, serviceProvider, dataEncoding,headerLengthEncoding)
     {
     }
     public override string ToString()

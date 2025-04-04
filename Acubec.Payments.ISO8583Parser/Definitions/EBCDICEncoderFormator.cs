@@ -22,4 +22,19 @@ internal class EBCDICEncoderFormator : IEncoderFormator
         var str = ebcdicEncoding.GetString(value);
         return str;
     }
+
+    public string Encode(ReadOnlySpan<byte> value)
+    {
+        Encoding ebcdicEncoding = Encoding.GetEncoding("IBM037");
+        return ebcdicEncoding.GetString(value);
+    }
+
+    public Span<byte> DecodeSpan(string value)
+    {
+        Encoding ebcdicEncoding = Encoding.GetEncoding("IBM037");
+        ReadOnlySpan<char> charSpan = value.AsSpan();
+        Span<byte> bytes = new Span<byte>();
+        ebcdicEncoding.GetBytes(charSpan, bytes);
+        return bytes;
+    }
 }

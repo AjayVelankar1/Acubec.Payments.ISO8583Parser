@@ -82,7 +82,8 @@ public class ProcessingCodeDataField : IsoBaseFixedField
 
     }
 
-    public ProcessingCodeDataField(string name, int length, int messageIndex, ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding dataEncoding = DataEncoding.ASCII) : base(name, length, messageIndex, byteMap, serviceProvider, dataEncoding)
+    public ProcessingCodeDataField(string name, int length, int messageIndex, 
+            ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding dataEncoding , DataEncoding headerLengthEncoding) : base(name, length, messageIndex, byteMap, serviceProvider, dataEncoding, headerLengthEncoding)
     {
     }
 

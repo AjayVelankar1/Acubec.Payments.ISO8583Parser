@@ -36,7 +36,9 @@ public interface IIsoField
 
     byte[] GetValueBytes();
 
-    int SetValueBytes(byte[] dataByte, int offset);
+    int SetValueBytes(Span<byte> dataByte, int offset);
+
+    int SetValueBytes(byte[] dataByte, int offset) => SetValueBytes(dataByte.AsSpan(),offset);
 
     string LogDump();
 

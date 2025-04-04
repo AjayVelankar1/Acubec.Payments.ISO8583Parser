@@ -5,6 +5,8 @@ namespace Acubec.Payments.ISO8583Parser.Definitions;
 
 public class SchemaConfiguration
 {
+
+    public string MTIParser { get; set; }
     public string SchemaName { get; set; }
     public string SchemaDescription { get; set; }
 

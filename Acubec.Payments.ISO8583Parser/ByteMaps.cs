@@ -26,12 +26,12 @@ internal class ByteMap
     {
         _bitMap = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0 };
     }
-    public void SetBitMap(byte[] bitMap)
+    public void SetBitMap(Span<byte> bitMap)
     {
-        _bitMap = bitMap;
+        _bitMap = bitMap.ToArray();
     }
 
-    public byte[] BitMap => _bitMap;
+    public Span<byte> BitMap => _bitMap;
 
     public void SetValue(int position, IIsoField value, SortedDictionary<int, IIsoField> _dictionary)
     {
@@ -64,7 +64,6 @@ public sealed class ByteMaps
             _byteMaps[i] = new ByteMap();
         }
     }
-
 
     private readonly ByteMap[] _byteMaps;
     private readonly int _byteMapLength;
@@ -109,11 +108,11 @@ public sealed class ByteMaps
 
     }
 
-    internal byte[] GetDataByte(DataEncoding format, IMTIParser mtiParser)
+    internal Span<byte> GetDataByte(DataEncoding format, IMTIParser mtiParser)
     {
         for (int i = 0; i < _byteMaps.Length; i++)
         {
-            Array.Fill(_byteMaps[i].BitMap, (byte)0);
+            _byteMaps[i].BitMap.Fill(0);
         }
 
         StringBuilder str = new();
@@ -131,23 +130,24 @@ public sealed class ByteMaps
             str.Append(field.Value.ToString());
         }
 
-        byte[] dataBytes = GetHeaderBytes(format);
+        var dataBytes = GetHeaderBytes(format);
 
         if (format == DataEncoding.ASCII)
         {
-            dataBytes = ByteHelper.CombineBytes(_headerMAP, dataBytes, Encoding.ASCII.GetBytes(str.ToString()));
+            dataBytes = ByteHelper.Combine(_headerMAP, dataBytes);
+            dataBytes = ByteHelper.Combine(dataBytes, Encoding.ASCII.GetBytes(str.ToString()));
         }
         else
         {
-            dataBytes = ByteHelper.CombineBytes(_headerMAP, dataBytes);
-            dataBytes = ByteHelper.CombineBytes(dataBytes, Encoding.UTF8.GetBytes(str.ToString()));
+            dataBytes = ByteHelper.Combine(_headerMAP, dataBytes);
+            dataBytes = ByteHelper.Combine(dataBytes, Encoding.UTF8.GetBytes(str.ToString()));
         }
         return dataBytes;
     }
 
-    public byte[] GetHeaderBytes(DataEncoding format)
+    public Span<byte> GetHeaderBytes(DataEncoding format)
     {
-        byte[] bytes = new byte[0];
+        Span<byte> bytes = new byte[0];
 
         for (int i = 0; i < _byteMaps.Length; i++)
         {
@@ -167,12 +167,12 @@ public sealed class ByteMaps
         return bytes;
     }
 
-    public void SetBitMap(int index, byte[] bitMap)
+    public void SetBitMap(int index, Span<byte> bitMap)
     {
         _byteMaps[index].SetBitMap(bitMap);
     }
 
-    public byte[] getBitMap(int index)
+    public Span<byte> getBitMap(int index)
     {
         return _byteMaps[index].BitMap;
     }

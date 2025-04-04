@@ -2,7 +2,9 @@
 
 public interface IMTIParser
 {
-    public string ParseMTI(byte[] isoMessage);
+    int SkipBytes { get; }
 
-    public byte[] WriteMTI(string mti);
+    public string ParseMTI(Span<byte> isoMessage);
+
+    public Span<Byte> WriteMTI(string mti);
 }
