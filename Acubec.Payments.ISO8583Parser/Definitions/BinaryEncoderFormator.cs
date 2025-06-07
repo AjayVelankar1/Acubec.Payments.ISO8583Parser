@@ -42,7 +42,7 @@ internal sealed class HexFormator : IEncoderFormator
 
     public byte[] Decode(string value)
     {
-        return ByteHelper.GetBitmapFromHexString(value);
+        return ByteHelper.GetBytesFromHexString(value);
     }
 
     public string Encode(ReadOnlySpan<byte> value)
@@ -52,7 +52,7 @@ internal sealed class HexFormator : IEncoderFormator
 
     public Span<byte> DecodeSpan(string value)
     {
-        var bytes = ByteHelper.GetBitmapFromHexString(value);
+        var bytes = ByteHelper.GetBytesFromHexString(value);
         return bytes.AsSpan<byte>();
     }
 }

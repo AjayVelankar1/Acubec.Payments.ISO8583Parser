@@ -7,7 +7,8 @@ public class POSEntryModeField : IsoBaseFixedField
     private string _pOSTerminalPANEntryMode;
     private string _pOSTerminalPINEntryMode;
 
-    public POSEntryModeField(string name, int length, int messageIndex, ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding dataEncoding , DataEncoding headerLengthEncoding) : base(name, length, messageIndex, byteMap, serviceProvider, dataEncoding,headerLengthEncoding)
+    public POSEntryModeField(string name, int length, int messageIndex, ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding messageEncoding, DataEncoding dataEncoding , DataEncoding headerLengthEncoding) 
+        : base(name, length, messageIndex, byteMap, serviceProvider, messageEncoding, dataEncoding,headerLengthEncoding)
     {
     }
     public string POSTerminalPANEntryMode

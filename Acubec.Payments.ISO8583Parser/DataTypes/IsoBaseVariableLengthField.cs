@@ -21,10 +21,11 @@ public class IsoBaseVariableLengthField : BaseIsoField, IIsoField
     public IsoBaseVariableLengthField(string name, short length, int messageIndex,
         ByteMaps byteMap,
         IServiceProvider serviceProvider,
+        DataEncoding messageEncoding,
         DataEncoding dataEncoding,
         DataEncoding headerLengthEncoding,
         short bitMapLength = 2)
-        : base(name, IsoTypes.LLVar, length, messageIndex, byteMap, serviceProvider, dataEncoding,headerLengthEncoding)
+        : base(name, IsoTypes.LLVar, length, messageIndex, byteMap, serviceProvider, messageEncoding, dataEncoding, headerLengthEncoding)
     {
         _bitMapLength = bitMapLength;
         _originalLength = length;
@@ -65,12 +66,36 @@ public class IsoBaseVariableLengthField : BaseIsoField, IIsoField
             return string.Empty;
         }
 
-        //var encoder = _serviceProvider.GetKeyedService<IEncoderFormator>(_encoding.ToString());
-        //var lengthEncoder = _serviceProvider.GetKeyedService<IEncoderFormator>(_headerLengthEncoding.ToString());
-        //string strLength =  _value.Length.ToString(CultureInfo.InvariantCulture).PadLeft(_orignalLength, '0')
-        //var length = lengthEncoder.Encode(strLength);
+        var lengthString = string.Empty;
+        var valueString = string.Empty;
 
-        return Value.Length.ToString(CultureInfo.InvariantCulture).PadLeft(_originalLength, '0') + Value;
+        var encoder = _serviceProvider.GetKeyedService<IEncoderFormator>(_encoding.ToString());
+        var lengthEncoder = _serviceProvider.GetKeyedService<IEncoderFormator>(_headerLengthEncoding.ToString());
+        string strLength = _value.Length.ToString(CultureInfo.InvariantCulture).PadLeft(_length, '0');
+        var messageEncoder = _serviceProvider.GetKeyedService<IEncoderFormator>(base._messageEncoding.ToString());
+
+        if (_headerLengthEncoding == DataEncoding.HEX || _headerLengthEncoding == DataEncoding.Binary || _headerLengthEncoding == DataEncoding.BinaryPlus)
+        {
+            lengthString = BitConverter.ToString([(byte)Value.Length]);
+        }
+        else
+        {
+            lengthString = Value.Length.ToString(CultureInfo.InvariantCulture).PadLeft(_originalLength, '0');
+        }
+
+        if (_encoding == DataEncoding.HEX)
+        {
+            valueString = ByteHelper.GetHexRepresentation(encoder.Decode(Value));
+        }
+        else if (_encoding == DataEncoding.ASCII)
+        {
+            valueString = Value;
+        }
+        else
+        {
+            valueString = messageEncoder.Encode(encoder.Decode(Value));
+        }
+        return lengthString + valueString;
     }
 
     public override int SetValueBytes(Span<byte> dataByte, int offset)
@@ -78,7 +103,7 @@ public class IsoBaseVariableLengthField : BaseIsoField, IIsoField
         var encoder = _serviceProvider.GetKeyedService<IEncoderFormator>(_encoding.ToString());
         var lengthEncoder = _serviceProvider.GetKeyedService<IEncoderFormator>(_headerLengthEncoding.ToString());
         var length = _length;
-        if (_headerLengthEncoding == DataEncoding.HEX)
+        if (_headerLengthEncoding == DataEncoding.HEX || _headerLengthEncoding == DataEncoding.Binary || _headerLengthEncoding == DataEncoding.BinaryPlus)
         {
             length = 1;
         }
@@ -86,16 +111,18 @@ public class IsoBaseVariableLengthField : BaseIsoField, IIsoField
         var bytes = dataByte.GetByteSlice(length, offset);
         string strLen = lengthEncoder.Encode(bytes);
 
-        if (_headerLengthEncoding == DataEncoding.HEX)
+        if (_headerLengthEncoding == DataEncoding.HEX || _headerLengthEncoding == DataEncoding.Binary 
+                || _headerLengthEncoding == DataEncoding.BinaryPlus)
         {
             strLen = bytes[0].ToString();
         }
 
         var dataLength = Convert.ToInt32(strLen, CultureInfo.InvariantCulture);
-        if (_headerLengthEncoding == DataEncoding.HEX)
+        
+        if (_headerLengthEncoding == DataEncoding.HEX || _headerLengthEncoding == DataEncoding.Binary)
         {
             dataLength = dataLength / 2;
-            if (dataLength % 2 != 0) ++length;
+            if (dataLength % 2 != 0) ++dataLength;
         }
         //strLen = dataLength.ToString(CultureInfo.InvariantCulture).PadLeft(_originalLength, '0');
 

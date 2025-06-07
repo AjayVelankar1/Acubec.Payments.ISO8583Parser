@@ -8,7 +8,8 @@ public class TagValueSubField : IsoBaseVariableLengthField
 
     readonly Dictionary<string, string> _subField = new Dictionary<string, string>();
 
-    public TagValueSubField(string name, short length, int messageIndex, ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding dataEncoding , DataEncoding headerLengthEncoding, short bitMapLength = 2) : base(name, length, messageIndex, byteMap, serviceProvider, dataEncoding, headerLengthEncoding, bitMapLength)
+    public TagValueSubField(string name, short length, int messageIndex, ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding messageEncoding, DataEncoding dataEncoding, DataEncoding headerLengthEncoding, short bitMapLength = 2)
+        : base(name, length, messageIndex, byteMap, serviceProvider, messageEncoding, dataEncoding, headerLengthEncoding, bitMapLength)
     {
     }
 
@@ -58,7 +59,9 @@ public class TagValueSubField : IsoBaseVariableLengthField
 
             return isSet;
         }
-        protected set { }
+        protected set {
+            base.IsSet = value;
+        }
     }
 
     private string GetValueString()

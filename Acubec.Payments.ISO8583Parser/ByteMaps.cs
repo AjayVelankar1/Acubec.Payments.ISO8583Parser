@@ -1,5 +1,7 @@
 ﻿using Acubec.Payments.ISO8583Parser.Helpers;
 using Acubec.Payments.ISO8583Parser.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Text;
 
 namespace Acubec.Payments.ISO8583Parser;
@@ -81,7 +83,7 @@ public sealed class ByteMaps
 
     public void SetValue(int position, IIsoField value)
     {
-        if (value.Value == "" || value.Value == null) return;
+        if (string.IsNullOrEmpty(value.Value)) return;
 
         int index = position / 64;
         int reminder = position % 64;
@@ -108,7 +110,7 @@ public sealed class ByteMaps
 
     }
 
-    internal Span<byte> GetDataByte(DataEncoding format, IMTIParser mtiParser)
+    internal Span<byte> GetDataByte(DataEncoding format, IMTIParser mtiParser, IServiceProvider serviceProvider)
     {
         for (int i = 0; i < _byteMaps.Length; i++)
         {
@@ -129,20 +131,12 @@ public sealed class ByteMaps
 
             str.Append(field.Value.ToString());
         }
-
-        var dataBytes = GetHeaderBytes(format);
-
-        if (format == DataEncoding.ASCII)
-        {
-            dataBytes = ByteHelper.Combine(_headerMAP, dataBytes);
-            dataBytes = ByteHelper.Combine(dataBytes, Encoding.ASCII.GetBytes(str.ToString()));
-        }
-        else
-        {
-            dataBytes = ByteHelper.Combine(_headerMAP, dataBytes);
-            dataBytes = ByteHelper.Combine(dataBytes, Encoding.UTF8.GetBytes(str.ToString()));
-        }
-        return dataBytes;
+        var encoder = serviceProvider.GetKeyedService<IEncoderFormator>(format.ToString());
+        byte[] dataBytes = encoder.Decode(str.ToString());
+        
+        var biteMapBytes = GetHeaderBytes(format);
+        var header = mtiParser.WriteMTI(Encoding.ASCII.GetString(_headerMAP), biteMapBytes.Length + dataBytes?.Length??0).ToArray();
+        return ByteHelper.Combine(header, biteMapBytes.ToArray(),dataBytes);
     }
 
     public Span<byte> GetHeaderBytes(DataEncoding format)
@@ -151,18 +145,7 @@ public sealed class ByteMaps
 
         for (int i = 0; i < _byteMaps.Length; i++)
         {
-            if (_byteMaps[i].IsSet)
-            {
-                if (format == DataEncoding.ASCII)
-                {
-                    bytes = ByteHelper.convertBinaryToHexUsingConvert(bytes);
-                }
-                else
-                {
-                    bytes = ByteHelper.Combine(bytes, _byteMaps[i].BitMap);
-                }
-
-            }
+            bytes = ByteHelper.Combine(bytes, _byteMaps[i].BitMap);
         }
         return bytes;
     }

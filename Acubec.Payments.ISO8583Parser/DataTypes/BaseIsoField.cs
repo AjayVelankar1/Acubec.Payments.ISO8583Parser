@@ -5,6 +5,7 @@ public enum DataEncoding
 {
     ASCII,
     Binary,
+    BinaryPlus,
     EBCDIC,
     HEX,
     CardholderBillingConversionRate,
@@ -19,6 +20,7 @@ public abstract class BaseIsoField : IIsoField
     protected int _length;
     protected string _value;
     protected ByteMaps _byteMap;
+    protected readonly DataEncoding _messageEncoding;
     protected int _messageIndex;
     protected DataEncoding _encoding;
     protected IServiceProvider _serviceProvider;
@@ -42,7 +44,7 @@ public abstract class BaseIsoField : IIsoField
     /// <param name="length">Length of the message.</param>
     /// <param name="isMandatory">if set to <c>true</c> [is mandatory].</param>
     protected BaseIsoField(string name, IsoTypes type, int length, int messageIndex
-        , ByteMaps byteMap, IServiceProvider serviceProvider,
+        , ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding messageEncoding,
         DataEncoding dataEncoding , DataEncoding headerLengthEncoding)
     {
         Name = name;
@@ -50,6 +52,7 @@ public abstract class BaseIsoField : IIsoField
         _length = length;
         _messageIndex = messageIndex;
         _byteMap = byteMap;
+        _messageEncoding = messageEncoding;
         _encoding = dataEncoding;
         _serviceProvider = serviceProvider;
         _headerLengthEncoding = headerLengthEncoding;

@@ -14,8 +14,8 @@ public abstract class IsoBaseFixedField : BaseIsoField, IIsoField
     /// <param name="name">The name.</param>
     /// <param name="length">The length.</param>
     /// <param name="isMandatory">if set to <c>true</c> [is mandatory].</param>
-    public IsoBaseFixedField(string name, int length, int messageIndex, ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding dataEncoding = DataEncoding.ASCII, DataEncoding headerLengthEncoding = DataEncoding.ASCII)
-        : base(name, IsoTypes.Fixed, length, messageIndex, byteMap, serviceProvider, dataEncoding, headerLengthEncoding)
+    public IsoBaseFixedField(string name, int length, int messageIndex, ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding messageEncoding, DataEncoding dataEncoding = DataEncoding.ASCII, DataEncoding headerLengthEncoding = DataEncoding.ASCII)
+        : base(name, IsoTypes.Fixed, length, messageIndex, byteMap, serviceProvider, messageEncoding, dataEncoding, headerLengthEncoding)
     {
 
     }
@@ -28,17 +28,21 @@ public abstract class IsoBaseFixedField : BaseIsoField, IIsoField
     {
         if (Value.Length != _length)
         {
-            throw new ArgumentException();
+            //throw new ArgumentException();
         }
 
-        return Value;
+        var encoder = _serviceProvider.GetKeyedService<IEncoderFormator>(_encoding.ToString());
+        var messageEncoder = _serviceProvider.GetKeyedService<IEncoderFormator>(base._messageEncoding.ToString());
+
+        return messageEncoder.Encode(encoder.Decode(Value));
     }
 
     public override int SetValueBytes(Span<byte> dataByte, int offset)
     {
         var encoder = _serviceProvider.GetKeyedService<IEncoderFormator>(_encoding.ToString());
         var length = _length;
-        if (_headerLengthEncoding == DataEncoding.HEX)
+        
+        if (_headerLengthEncoding == DataEncoding.HEX || _headerLengthEncoding == DataEncoding.Binary)
         {
             length = Length / 2;
             if (Length % 2 != 0) ++length;

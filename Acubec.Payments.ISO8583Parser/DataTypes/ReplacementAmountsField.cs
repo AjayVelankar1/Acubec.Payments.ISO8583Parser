@@ -96,10 +96,9 @@ public class ReplacementAmountsField : IsoBaseFixedField
             _value = value;
             base.IsSet = true;
         }
-
     }
 
-    public ReplacementAmountsField(string name, int length, int messageIndex, ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding dataEncoding , DataEncoding headerLengthEncoding) : base(name, length, messageIndex, byteMap, serviceProvider, dataEncoding,headerLengthEncoding)
+    public ReplacementAmountsField(string name, int length, int messageIndex, ByteMaps byteMap, IServiceProvider serviceProvider, DataEncoding messageEncoding, DataEncoding dataEncoding , DataEncoding headerLengthEncoding) : base(name, length, messageIndex, byteMap, serviceProvider,messageEncoding, dataEncoding,headerLengthEncoding)
     {
     }
     public override string ToString()

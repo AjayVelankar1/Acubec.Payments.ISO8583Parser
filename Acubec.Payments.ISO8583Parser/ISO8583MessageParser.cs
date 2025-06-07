@@ -4,6 +4,7 @@ using Acubec.Payments.ISO8583Parser.Helpers;
 using Acubec.Payments.ISO8583Parser.Interfaces;
 using Acubec.Payments.ISO8583Parser.Messages;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Text;
 
 namespace Acubec.Payments.ISO8583Parser;
@@ -45,8 +46,8 @@ public sealed class ISO8583MessageParser
 
     public Span<byte> ToBytes(IIsoMessage message, DataEncoding encoding)
     {
-        var mtiParser = (IMTIParser)_serviceProvider.GetService(typeof(IMTIParser));
-        return ((IsoRequest)message).ByteMap.GetDataByte(encoding, mtiParser);
+        var mtiParser = (IMTIParser)_serviceProvider.GetKeyedService<IMTIParser>(_schemaConfiguration.MTIParser ?? "ASCII");
+        return ((IsoRequest)message).ByteMap.GetDataByte(encoding, mtiParser,_serviceProvider);
     }
 
     private IsoRequest getMessage(string mti, SchemaConfiguration schemaConfiguration)
@@ -97,14 +98,14 @@ public sealed class ISO8583MessageParser
             var isoFiled = field.Type switch
             {
 
-                "Variable" => new IsoBaseVariableLengthField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding, field.HeaderLengthEncoding),
-                "TagValueSubField" => (IIsoField)new TagValueSubField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding, field.HeaderLengthEncoding),
-                "Fixed" => new IsoAlphaNumericFixedField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding, field.HeaderLengthEncoding),
-                "ProcessingCode" => (IIsoField)new ProcessingCodeDataField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding, field.HeaderLengthEncoding),
+                "Variable" => new IsoBaseVariableLengthField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, _schemaConfiguration.SchemaEncoding, field.DataEncoding, field.HeaderLengthEncoding),
+                "TagValueSubField" => (IIsoField)new TagValueSubField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, _schemaConfiguration.SchemaEncoding, field.DataEncoding, field.HeaderLengthEncoding),
+                "Fixed" => new IsoAlphaNumericFixedField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, _schemaConfiguration.SchemaEncoding, field.DataEncoding, field.HeaderLengthEncoding),
+                "ProcessingCode" => (IIsoField)new ProcessingCodeDataField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, _schemaConfiguration.SchemaEncoding, field.DataEncoding, field.HeaderLengthEncoding),
                 "CardholderBillingConversionRate" => (IIsoField)new CardHolderBillingConversionRateField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding, field.HeaderLengthEncoding),
-                "PosEntryMode" => (IIsoField)new POSEntryModeField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding, field.HeaderLengthEncoding),
-                "CardAcceptorNameLocation" => (IIsoField)new CardAcceptorNameLocationField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding, field.HeaderLengthEncoding),
-                "ReplacementAmounts" => (IIsoField)new ReplacementAmountsField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, field.DataEncoding, field.HeaderLengthEncoding),
+                "PosEntryMode" => (IIsoField)new POSEntryModeField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, _schemaConfiguration.SchemaEncoding, field.DataEncoding, field.HeaderLengthEncoding),
+                "CardAcceptorNameLocation" => (IIsoField)new CardAcceptorNameLocationField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, _schemaConfiguration.SchemaEncoding, field.DataEncoding, field.HeaderLengthEncoding),
+                "ReplacementAmounts" => (IIsoField)new ReplacementAmountsField(field.Name, (short)field.SizeInt, field.Index, byteMap, serviceProvider, _schemaConfiguration.SchemaEncoding, field.DataEncoding, field.HeaderLengthEncoding),
                 _ => customFieldFactory.GetField(field, byteMap)
             };
             if (isoFiled != null)

@@ -6,5 +6,5 @@ public interface IMTIParser
 
     public string ParseMTI(Span<byte> isoMessage);
 
-    public Span<Byte> WriteMTI(string mti);
+    public Span<Byte> WriteMTI(string mti, int totalLength = 0);
 }
