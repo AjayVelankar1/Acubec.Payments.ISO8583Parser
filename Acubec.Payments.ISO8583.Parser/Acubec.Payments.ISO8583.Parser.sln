@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36121.58
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acubec.Payments.ISO8583.Parser", "Acubec.Payments.ISO8583.Parser.csproj", "{110BBED5-88D8-4BF0-8327-9F4B03B46B9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acubec.Payments.ISO8583.Parser.Test", "..\Acubec.Payments.ISO8583.Parser.Test\Acubec.Payments.ISO8583.Parser.Test.csproj", "{D1B5CD39-188F-46CB-9A35-D523ADC43D26}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{110BBED5-88D8-4BF0-8327-9F4B03B46B9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{110BBED5-88D8-4BF0-8327-9F4B03B46B9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{110BBED5-88D8-4BF0-8327-9F4B03B46B9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{110BBED5-88D8-4BF0-8327-9F4B03B46B9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1B5CD39-188F-46CB-9A35-D523ADC43D26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1B5CD39-188F-46CB-9A35-D523ADC43D26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1B5CD39-188F-46CB-9A35-D523ADC43D26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1B5CD39-188F-46CB-9A35-D523ADC43D26}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0CAA94B-C6D9-40E4-9E84-D06F307A8107}
+	EndGlobalSection
+EndGlobal
