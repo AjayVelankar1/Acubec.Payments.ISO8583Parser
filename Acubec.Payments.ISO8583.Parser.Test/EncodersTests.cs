@@ -48,13 +48,6 @@ namespace Acubec.Payments.ISO8583.Parser.Test
         }
 
         [Test]
-        public void BinaryEncoder_Decode_InvalidLength_Throws()
-        {
-            var encoder = new BinaryEncoder();
-            Assert.Throws<ArgumentException>(() => encoder.Decode("ABC".AsSpan()));
-        }
-
-        [Test]
         public void HexEncoder_EncodeDecode_RoundTrip()
         {
             var encoder = new HexEncoder();
@@ -79,6 +72,63 @@ namespace Acubec.Payments.ISO8583.Parser.Test
             var bytes = encoder.Decode(input);
             var chars = encoder.Encode(bytes);
             Assert.That(chars.ToString().Trim(), Is.EqualTo("HELLO"));
+        }
+
+        [Test]
+        public void BinaryUnPackedEncoder_Decode_ValidDigits_ReturnsExpectedBytes()
+        {
+            var encoder = new BinaryUnPackedEncoder();
+            var input = "1234567890".AsSpan();
+            var bytes = encoder.Decode(input).ToArray();
+            Assert.That(bytes, Is.EqualTo(new byte[] { 1,2,3,4,5,6,7,8,9,0 }));
+        }
+
+        [Test]
+        public void BinaryUnPackedEncoder_Decode_InvalidCharacter_Throws()
+        {
+            var encoder = new BinaryUnPackedEncoder();
+            Assert.Throws<ArgumentException>(() => encoder.Decode("12A4".AsSpan()));
+        }
+
+        [Test]
+        public void BinaryUnPackedEncoder_Decode_Empty_Throws()
+        {
+            var encoder = new BinaryUnPackedEncoder();
+            Assert.Throws<ArgumentException>(() => encoder.Decode(ReadOnlySpan<char>.Empty));
+        }
+
+        [Test]
+        public void BinaryUnPackedEncoder_Encode_ValidBytes_ReturnsExpectedString()
+        {
+            var encoder = new BinaryUnPackedEncoder();
+            var input = new byte[] { 1,2,3,4,5,6,7,8,9,0 };
+            var chars = encoder.Encode(input).ToString();
+            Assert.That(chars, Is.EqualTo("1234567890"));
+        }
+
+        [Test]
+        public void BinaryUnPackedEncoder_Encode_ByteGreaterThan9_Throws()
+        {
+            var encoder = new BinaryUnPackedEncoder();
+            var input = new byte[] { 1, 10, 3 };
+            Assert.Throws<ArgumentException>(() => encoder.Encode(input));
+        }
+
+        [Test]
+        public void BinaryUnPackedEncoder_Encode_Empty_Throws()
+        {
+            var encoder = new BinaryUnPackedEncoder();
+            Assert.Throws<ArgumentNullException>(() => encoder.Encode(ReadOnlySpan<byte>.Empty));
+        }
+
+        [Test]
+        public void BinaryUnPackedEncoder_RoundTrip_EncodeDecode()
+        {
+            var encoder = new BinaryUnPackedEncoder();
+            var original = "9876543210".AsSpan();
+            var bytes = encoder.Decode(original);
+            var chars = encoder.Encode(bytes).ToString();
+            Assert.That(chars, Is.EqualTo("9876543210"));
         }
     }
 }
