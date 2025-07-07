@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -102,7 +103,7 @@ public sealed class ByteMaps
         if (position > 64)
         {
             _byteMaps[0].BitMap[index - 1] |= 0x80;
-            _byteMaps[0].BitMap[(reminder - 1) / 8] |= (byte)(0x80 >> ((reminder - 1) % 8));
+            _byteMaps[index].BitMap[(reminder - 1) / 8] |= (byte)(0x80 >> ((reminder - 1) % 8));
             _byteMaps[index].SetBitMap(_byteMaps[index].BitMap);
         }
         else
@@ -117,22 +118,26 @@ public sealed class ByteMaps
     {
         ReadOnlySpan<byte> str = Span<byte>.Empty;
         _byteMaps[0].IsSet = true;
+        
 
         foreach (var field in _dictionary)
         {
+            int index = 0;
             if (field.Key > 64 && field.Value.IsSet)
             {
-                int index = field.Key / 64;
+                index = field.Key / 64;
                 _byteMaps[index - 1].BitMap[0] |= 0x80;
-                _byteMaps[index].IsSet = true;
             }
 
-            str = ByteHelper.Combine(str,field.Value.ValueSpans);
+            if (field.Value.IsSet)
+            {
+                _byteMaps[index].IsSet = true;
+                str = ByteHelper.Combine(str, field.Value.ValueSpans);
+            }
         }
         
         var biteMapBytes = GetHeaderBytes(format).ToArray();
-        var i = mtiParser.WriteMTI(message.MessageType, _byteMapLength);
-
+        
         var header = mtiParser.WriteMTI(Encoding.ASCII.GetString(_headerMAP), biteMapBytes.Length + str.Length).ToArray();
         // Fix: Actually return the combined bytes, not Span<byte>.Empty
         return ByteHelper.Combine(header, biteMapBytes, str.ToArray()).ToArray();

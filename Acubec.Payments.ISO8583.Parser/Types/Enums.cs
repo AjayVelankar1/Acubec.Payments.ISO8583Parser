@@ -25,8 +25,5 @@ public enum DataEncoding
     BinaryPlus,
     EBCDIC,
     HEX,
-    CardholderBillingConversionRate,
-    PosEntryMode,
-    CardAcceptorNameLocation,
-    ReplacementAmounts,
+    BinaryUnPacked
 }

@@ -41,15 +41,12 @@ public sealed class Field
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public DataEncoding DataEncoding { get; set; }
 
-    [JsonConverter(typeof(JsonStringEnumConverter))]
-    public DataEncoding HeaderEncoding { get; set; }
-
-    public string PaddingChractor { get; set; }
-    public bool Mask { get; set; }
+    public string? PaddingChractor { get; set; }
+    public bool? Mask { get; set; }
 
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public DataEncoding HeaderLengthEncoding { get; set; }
-    public int HeaderLength { get; internal set; }
+    public int? HeaderLength { get; internal set; }
 }
 
 public sealed class Message
@@ -60,8 +57,8 @@ public sealed class Message
     public string Type { get; set; }
     public string[] Identifier { get; set; }
     public string[] Fields { get; set; }
-    public bool IsAdviceMessage { get; set; }
-    public bool IsRepeatMessage { get; set; }
-    public bool IsResponseMessage { get; set; }
-    public bool IsNetworkMessage { get; set; }
+    public bool? IsAdviceMessage { get; set; }
+    public bool? IsRepeatMessage { get; set; }
+    public bool? IsResponseMessage { get; set; }
+    public bool? IsNetworkMessage { get; set; }
 }

@@ -10,4 +10,5 @@ public interface IEncoder
 {
     ReadOnlySpan<char> Encode(ReadOnlySpan<byte> value);
     ReadOnlySpan<byte> Decode(ReadOnlySpan<char> value);
+
 }

@@ -81,60 +81,56 @@ internal sealed class VisaHeaderParser: IHeaderParser
     {
         Span<byte> headerBytes = stackalloc byte[26];
 
-        string hexValue = totalLength.ToString("X4");
-        headerBytes[0] = Convert.ToByte(hexValue[0..2], 16); // First byte
-        headerBytes[1] = Convert.ToByte(hexValue[2..4], 16); // Second byte
+        // 0-1: Message Length (2 bytes, big-endian)
+        headerBytes[0] = (byte)((totalLength >> 8) & 0xFF); // High byte
+        headerBytes[1] = (byte)(totalLength & 0xFF);        // Low byte
 
-        if (_headerLength == 0) _headerLength = 16;
-        headerBytes[2] = Convert.ToByte(_headerLength);
+        // 2: Header Length (1 byte, always 16 for Visa)
+        if(_headerLength == 0) _headerLength  = 16;
+        headerBytes[2] = Convert.ToByte(_headerLength.ToString(),16);
+        
 
+        // 3: Header Flag and Format (1 byte)
+        headerBytes[3] = Convert.ToByte(_headerFlagAndFormat ?? "01", 16);
 
-        hexValue = _headerLength.ToString("X4");
-        headerBytes[3] = Convert.ToByte(hexValue[0..2], 16); // First byte
-        headerBytes[4] = Convert.ToByte(hexValue[2..4], 16); // Second byte
+        // 4: Text Format (1 byte)
+        headerBytes[4] = Convert.ToByte(_textFormat ?? "02", 16);
 
-        headerBytes[4] = Convert.ToByte(_headerFlagAndFormat ?? "01", 16);
-        headerBytes[5] = Convert.ToByte(_textFormat ?? "02", 16);
+        // 5-6: Total Message Length (2 bytes)
 
+        headerBytes[5] = (byte)((totalLength >> 8) & 0xFF); // High byte
+        headerBytes[6] = (byte)(totalLength & 0xFF);        // Low byte
 
-        headerBytes[6] = headerBytes[0];
-        headerBytes[7] = headerBytes[1];
+        // 7-9: Designated Station Id (3 bytes)
+        string designatedStationId = _designatedStationId ?? "000000";
+        headerBytes[7] = Convert.ToByte(designatedStationId[0..2], 16);
+        headerBytes[8] = Convert.ToByte(designatedStationId[2..4], 16);
+        headerBytes[9] = Convert.ToByte(designatedStationId[4..6], 16);
 
-        _designatedStationId = _designatedStationId ?? "000000";
+        // 10-12: Source Station Id (3 bytes)
+        string sourceStationId = _sourceStationId ?? "000000";
+        headerBytes[10] = Convert.ToByte(sourceStationId[0..2], 16);
+        headerBytes[11] = Convert.ToByte(sourceStationId[2..4], 16);
+        headerBytes[12] = Convert.ToByte(sourceStationId[4..6], 16);
 
-        headerBytes[8] = Convert.ToByte(_designatedStationId[0..2], 16);
-        headerBytes[9] = Convert.ToByte(_designatedStationId[2..4], 16);
-        headerBytes[10] = Convert.ToByte(_designatedStationId[4..6], 16);
+        // 13: Round Trip Control Information (1 byte)
+        headerBytes[13] = Convert.ToByte(_roundTripControlInformation ?? "00", 16);
 
+        // 14-16: Message Status Flag (3 bytes)
+        string messageStatusFlag = _messageStatusFlag ?? "000000";
+        headerBytes[14] = Convert.ToByte(messageStatusFlag[0..2], 16);
+        headerBytes[15] = Convert.ToByte(messageStatusFlag[2..4], 16);
+        headerBytes[16] = Convert.ToByte(messageStatusFlag[4..6], 16);
 
-        _sourceStationId = _sourceStationId ?? "000000";
+        // 17: User Information (1 byte)
+        headerBytes[17] = Convert.ToByte(_userInformation ?? "00", 16);
 
-        headerBytes[11] = Convert.ToByte(_sourceStationId[0..2], 16);
-        headerBytes[12] = Convert.ToByte(_sourceStationId[2..4], 16);
-        headerBytes[13] = Convert.ToByte(_sourceStationId[4..6], 16);
+        // 18-23: Reserved/Unused (set to 0)
+        for (int i = 18; i <= 23; i++)
+            headerBytes[i] = 0x00;
 
-        headerBytes[14] = Convert.ToByte(_roundTripControlInformation ?? "00", 16);
-
-        _baseIFlag = _baseIFlag ?? "0000";
-        headerBytes[15] = Convert.ToByte(_baseIFlag[0..2], 16);
-        headerBytes[16] = Convert.ToByte(_baseIFlag[2..4], 16);
-
-
-
-        _messageStatusFlag = _messageStatusFlag ?? "000000";
-
-        headerBytes[17] = Convert.ToByte(_messageStatusFlag[0..2], 16);
-        headerBytes[18] = Convert.ToByte(_messageStatusFlag[2..4], 16);
-        headerBytes[19] = Convert.ToByte(_messageStatusFlag[4..6], 16);
-
-        headerBytes[20] = Convert.ToByte(_batchNumber ?? "00", 16);
-
-        headerBytes[21] = Convert.ToByte("00", 16);
-        headerBytes[22] = Convert.ToByte("00", 16);
-        headerBytes[23] = Convert.ToByte("00", 16);
-        headerBytes[24] = Convert.ToByte(_userInformation ?? "00", 16);
-
-        headerBytes[25] = Convert.ToByte(mti[0..2], 16);
+        // 24-25: MTI (2 bytes)
+        headerBytes[24] = Convert.ToByte(mti[0..2], 16);
         headerBytes[25] = Convert.ToByte(mti[2..4], 16);
 
         return headerBytes.ToArray();

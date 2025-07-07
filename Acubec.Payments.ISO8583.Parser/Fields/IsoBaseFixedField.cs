@@ -51,7 +51,7 @@ public abstract class IsoBaseFixedField : BaseIsoField, IIsoField
         if (_encoding == DataEncoding.HEX)
         {
             length = length / 2;
-            if (_field.SizeInt % 2 != 0) ++length;
+            if (length % 2 != 0) ++length;
         }
 
         var bytes = dataByte.GetByteSlice(length, offset);
@@ -66,13 +66,26 @@ public abstract class IsoBaseFixedField : BaseIsoField, IIsoField
     {
         get
         {
+            if (_length == 0) _length = base._field.SizeInt;
+
             if (Value.Length != _length)
             {
                 //throw new ArgumentException();
             }
 
             var encoder = _serviceProvider.GetKeyedService<IEncoder>(_encoding.ToString())!;
-            return encoder.Decode(Value);
+            var result =  encoder.Decode(Value);
+
+
+
+            if(_encoding == DataEncoding.HEX)
+            {
+                var length = _field.SizeInt / 2;
+
+                if (length % 2 != 0) 
+                    result = ByteHelper.Combine([(byte)0],result);
+            }
+            return result;
         }
     }
     #endregion Public Methods

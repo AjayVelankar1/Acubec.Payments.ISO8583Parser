@@ -1,1518 +1,1401 @@
 ﻿{
-  "SchemaName": "Visa",
-  "SchemaDescription": "Visa",
-  "SchemaEncoding": "Binary",
-  "HeaderParserName": "VisaMTIParser",
   "ByteMapLength": 2,
+  "HeaderParserName": "VisaMTIParser",
+  "NetworkDescription": "Visa",
+  "NetworkName": "Visa",
+  "SchemaEncoding": 1,
+  "SchemaName": "Visa",
   "Fields": [
     {
-      "name": "DE_0",
-      "description": "MESSAGE TYPE INDICATOR",
-      "alias": "MTI",
-      "type": "Fixed",
-      "size": "4",
-      "dataType": "String",
-      "dataEncoding": "Binary",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "formats": {
-        "ISO93": {}
-      },
-      "isPaddingRequired": false,
+      "DataEncoding": 1,
+      "DataType": "String",
+      "Description": "MESSAGE TYPE INDICATOR",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 0,
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_0",
+      "PaddingChractor": null,
+      "Size": "4",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_1",
-      "description": "BITMAP",
-      "alias": "BITMAP",
-      "type": "Fixed",
-      "size": "16",
-      "dataType": "Binary",
-      "dataEncoding": "ASCII",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "formats": {
-        "ISO93": {}
-      },
+      "DataEncoding": 0,
+      "DataType": "Binary",
+      "Description": "BITMAP",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 1,
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_1",
+      "PaddingChractor": null,
+      "Size": "16",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_2",
-      "description": "PAN - PRIMARY ACCOUNT NUMBER",
-      "alias": "PAN",
-      "type": "Variable",
-      "size": "2",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "PAN - PRIMARY ACCOUNT NUMBER",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 2,
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_2",
+      "PaddingChractor": null,
+      "Size": "2",
+      "Type": "Variable"
     },
     {
-      "name": "DE_3",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "PROCESSING CODE",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 3,
-      "description": "PROCESSING CODE",
-      "alias": "PROCESSING CODE",
-      "type": "Fixed",
-      "size": "6",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_3",
+      "PaddingChractor": null,
+      "Size": "6",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_4",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "AMOUNT, TRANSACTION",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 4,
-      "description": "AMOUNT, TRANSACTION",
-      "alias": "AMOUNT, TRANSACTION",
-      "type": "Fixed",
-      "size": "12",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_4",
+      "PaddingChractor": null,
+      "Size": "12",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_5",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "AMOUNT, Reconciliation",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 5,
-      "description": "AMOUNT, Reconciliation",
-      "alias": "AMOUNT, Reconciliation",
-      "type": "Fixed",
-      "size": "12",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_5",
+      "PaddingChractor": null,
+      "Size": "12",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_6",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "AMOUNT, CARDHOLDER BILLING Fee",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 6,
-      "description": "AMOUNT, CARDHOLDER BILLING Fee",
-      "alias": "AMOUNT, CARDHOLDER BILLING Fee",
-      "type": "Fixed",
-      "size": "12",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_6",
+      "PaddingChractor": null,
+      "Size": "12",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_7",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "Date and Time, Transmission",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 7,
-      "description": "Date and Time, Transmission",
-      "alias": "Date and Time, Transmission",
-      "type": "Fixed",
-      "size": "10",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_7",
+      "PaddingChractor": null,
+      "Size": "10",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_9",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "Conversion Rate Reconciliation",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 9,
-      "description": "Conversion Rate Reconciliation",
-      "alias": "Conversion Rate Reconciliation",
-      "type": "Fixed",
-      "size": "8",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_9",
+      "PaddingChractor": null,
+      "Size": "8",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_10",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "Conversion Rate, Cardholder Billing",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 10,
-      "description": "Conversion Rate, Cardholder Billing",
-      "alias": "Conversion Rate, Cardholder Billing",
-      "type": "Fixed",
-      "size": "8",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_10",
+      "PaddingChractor": null,
+      "Size": "8",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_11",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "SYSTEM TRACE AUDIT NUMBER",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 11,
-      "description": "SYSTEM TRACE AUDIT NUMBER",
-      "alias": "SYSTEM TRACE AUDIT NUMBER",
-      "type": "Fixed",
-      "size": "6",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_11",
+      "PaddingChractor": null,
+      "Size": "6",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_12",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "Date and Time, Local Transaction",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 12,
-      "description": "Date and Time, Local Transaction",
-      "alias": "Date and Time, Local Transaction",
-      "type": "Fixed",
-      "size": "6",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_12",
+      "PaddingChractor": null,
+      "Size": "6",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_13",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "Date Effective",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 13,
-      "description": "Date Effective",
-      "alias": "Date Effective",
-      "type": "Fixed",
-      "size": "4",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "Mask": null,
+      "Name": "DE_13",
+      "PaddingChractor": null,
+      "Size": "4",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_14",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "Date, Expiration",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 14,
-      "description": "Date, Expiration",
-      "alias": "DATE, EXPIRATION",
-      "type": "Fixed",
-      "size": "4",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_14",
+      "PaddingChractor": null,
+      "Size": "4",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_15",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "DATE, SETTLEMENT",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 15,
-      "description": "DATE, SETTLEMENT",
-      "alias": "DATE, SETTLEMENT",
-      "type": "Fixed",
-      "size": "4",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "Mask": null,
+      "Name": "DE_15",
+      "PaddingChractor": null,
+      "Size": "4",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_16",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "DATE, CONVERSION",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 16,
-      "description": "DATE, CONVERSION",
-      "alias": "DATE, CONVERSION",
-      "type": "Fixed",
-      "size": "4",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_16",
+      "PaddingChractor": null,
+      "Size": "4",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_17",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "DATE, CAPTURE",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 17,
-      "description": "DATE, CAPTURE",
-      "alias": "DATE, CAPTURE",
-      "type": "Fixed",
-      "size": "4",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_17",
+      "PaddingChractor": null,
+      "Size": "4",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_18",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "MERCHANTS TYPE",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 18,
-      "description": "MERCHANTS TYPE",
-      "alias": "MERCHANTS TYPE",
-      "type": "Fixed",
-      "size": "4",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_18",
+      "PaddingChractor": null,
+      "Size": "4",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_19",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "Country Code, Acquiring Institution",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 19,
-      "description": "Country Code, Acquiring Institution",
-      "alias": "Country Code, Acquiring Institution",
-      "type": "Fixed",
-      "size": "3",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_19",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_22",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "Point of Service Data Code",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 22,
-      "description": "Point of Service Data Code",
-      "alias": "Point of Service Data Code",
-      "type": "Fixed",
-      "size": "3",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_22",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_23",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "CARD SEQUENCE NUMBER",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 23,
-      "description": "CARD SEQUENCE NUMBER",
-      "alias": "CARD SEQUENCE NUMBER",
-      "type": "Fixed",
-      "size": "3",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_23",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_25",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "POS condition Code",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 25,
-      "description": "POS condition Code",
-      "alias": "CARD SEQUENCE NUMBER",
-      "type": "Fixed",
-      "size": "2",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_25",
+      "PaddingChractor": null,
+      "Size": "2",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_26",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "CARD ACCEPTOR BUSINESS CODE",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 26,
-      "description": "CARD ACCEPTOR BUSINESS CODE",
-      "alias": "CARD ACCEPTOR BUSINESS CODE",
-      "type": "Fixed",
-      "size": "2",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_26",
+      "PaddingChractor": null,
+      "Size": "2",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_28",
+      "DataEncoding": 3,
+      "DataType": "Numeric",
+      "Description": "DATE RECONCILATION",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 0,
       "Index": 28,
-      "description": "DATE RECONCILATION",
-      "alias": "DATE RECONCILATION",
-      "type": "Fixed",
-      "size": "9",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "ASCII",
-      "dataEncoding": "EBCDIC",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_28",
+      "PaddingChractor": null,
+      "Size": "9",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_29",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "RECONCILATION INDICATOR",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 29,
-      "description": "RECONCILATION INDICATOR",
-      "alias": "RECONCILATION INDICATOR",
-      "type": "Fixed",
-      "size": "9",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "Mask": null,
+      "Name": "DE_29",
+      "PaddingChractor": null,
+      "Size": "9",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_32",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "Acquiring Institution Identification Code",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 32,
-      "description": "Acquiring Institution Identification Code",
-      "alias": "Acquiring Institution Identification Code",
-      "type": "Variable",
-      "size": "2",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_32",
+      "PaddingChractor": null,
+      "Size": "2",
+      "Type": "Variable"
     },
     {
-      "name": "DE_33",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "Forwarding Institution Identification Code",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 33,
-      "description": "Forwarding Institution Identification Code",
-      "alias": "Forwarding Institution Identification Code",
-      "type": "Variable",
-      "size": "2",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_33",
+      "PaddingChractor": null,
+      "Size": "2",
+      "Type": "Variable"
     },
     {
-      "name": "DE_35",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "Track 2 Data",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 35,
-      "description": "Track 2 Data",
-      "alias": "Track 2 Data",
-      "type": "Variable",
-      "size": "2",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_35",
+      "PaddingChractor": null,
+      "Size": "2",
+      "Type": "Variable"
     },
     {
-      "name": "DE_37",
+      "DataEncoding": 3,
+      "DataType": "String",
+      "Description": "Retrieval Reference Number",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 0,
       "Index": 37,
-      "description": "Retrieval Reference Number",
-      "alias": "Retrieval Reference Number",
-      "type": "Fixed",
-      "size": "12",
-      "dataType": "String",
-      "HeaderLengthEncoding": "ASCII",
-      "dataEncoding": "EBCDIC",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_37",
+      "PaddingChractor": null,
+      "Size": "12",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_38",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "Authorization Response",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 38,
-      "description": "Authorization Response",
-      "alias": "Authorization Response",
-      "type": "Fixed",
-      "size": "6",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_38",
+      "PaddingChractor": null,
+      "Size": "6",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_39",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "Response Code",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 39,
-      "description": "Response Code",
-      "alias": "Response Code",
-      "type": "Fixed",
-      "size": "2",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_39",
+      "PaddingChractor": null,
+      "Size": "2",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_40",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "SERVICE CODE",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 40,
-      "description": "SERVICE CODE",
-      "alias": "SERVICE CODE",
-      "type": "Fixed",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "Mask": null,
+      "Name": "DE_40",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_41",
+      "DataEncoding": 3,
+      "DataType": "Numeric",
+      "Description": "Card Acceptor Terminal Identification",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 0,
       "Index": 41,
-      "description": "Card Acceptor Terminal Identification",
-      "alias": "Card Acceptor Terminal Identification",
-      "type": "Fixed",
-      "size": "8",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "ASCII",
-      "dataEncoding": "EBCDIC",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_41",
+      "PaddingChractor": null,
+      "Size": "8",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_42",
+      "DataEncoding": 3,
+      "DataType": "Numeric",
+      "Description": "Card Acceptor Identification Code",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 0,
       "Index": 42,
-      "description": "Card Acceptor Identification Code",
-      "alias": "Card Acceptor Identification Code",
-      "type": "Fixed",
-      "size": "15",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "ASCII",
-      "dataEncoding": "EBCDIC",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_42",
+      "PaddingChractor": null,
+      "Size": "15",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_43",
+      "DataEncoding": 3,
+      "DataType": "String",
+      "Description": "Card Acceptor Name/Location",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 0,
       "Index": 43,
-      "description": "Card Acceptor Name/Location",
-      "alias": "Card Acceptor Name/Location",
-      "type": "Fixed",
-      "size": "40",
-      "dataType": "String",
-      "HeaderLengthEncoding": "ASCII",
-      "dataEncoding": "EBCDIC",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_43",
+      "PaddingChractor": null,
+      "Size": "40",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_46",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "AMOUNT FEES",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 46,
-      "description": "AMOUNT FEES",
-      "alias": "AMOUNT FEES",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_46",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_47",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "Data Record 2",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 47,
-      "description": "Data Record 2",
-      "alias": "Data Record 2",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_47",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_48",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "Data Record 3",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 48,
-      "description": "Data Record 3",
-      "alias": "Data Record 3",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_48",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_49",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "Currency Code, Transaction",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 49,
-      "description": "Currency Code, Transaction",
-      "alias": "Currency Code, Transaction",
-      "type": "Fixed",
-      "size": "3",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_49",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_50",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "Currency Code, Reconciliation",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 50,
-      "description": "Currency Code, Reconciliation",
-      "alias": "Currency Code, Reconciliation",
-      "type": "Fixed",
-      "size": "3",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_50",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_51",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "Currency Code, Cardholder Billing",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 51,
-      "description": "Currency Code, Cardholder Billing",
-      "alias": "Currency Code, Cardholder Billing",
-      "type": "Fixed",
-      "size": "3",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_51",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_52",
+      "DataEncoding": 4,
+      "DataType": "Binary",
+      "Description": "Personal Identification Number Data",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 52,
-      "description": "Personal Identification Number Data",
-      "alias": "Personal Identification Number Data",
-      "type": "Fixed",
-      "size": "16",
-      "dataType": "Binary",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_52",
+      "PaddingChractor": null,
+      "Size": "16",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_54",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "Amounts, Additional",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 54,
-      "description": "Amounts, Additional",
-      "alias": "Amounts, Additional",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_54",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_55",
+      "DataEncoding": 4,
+      "DataType": "Binary",
+      "Description": "IC CARD DATA",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 55,
-      "description": "IC CARD DATA",
-      "alias": "IC CARD DATA",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "Binary",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "Mask": null,
+      "Name": "DE_55",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_57",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "Authorization Life Cycle Code",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 57,
-      "description": "Authorization Life Cycle Code",
-      "alias": "Authorization Life Cycle Code",
-      "type": "Fixed",
-      "size": "3",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_57",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_58",
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "Authorizing Agent Institution Identification Code",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 58,
-      "description": "Authorizing Agent Institution Identification Code",
-      "alias": "Authorizing Agent Institution Identification Code",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_58",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_59",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "Transport Data",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 59,
-      "description": "Transport Data",
-      "alias": "Transport Data",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_59",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_60",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "Advice Reason Code",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 60,
-      "description": "Advice Reason Code",
-      "alias": "Advice Reason Code",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_60",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_61",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "RESERVED NATIONAL",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 61,
-      "description": "RESERVED NATIONAL",
-      "alias": "RESERVED NATIONAL",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "Mask": null,
+      "Name": "DE_61",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_62",
+      "DataEncoding": 1,
+      "DataType": "String",
+      "Description": "Custom Payment Service",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 62,
-      "description": "Custom Payment Service",
-      "HeaderLength": 2,
-      "alias": "Custom Payment Service",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Binary",
-      "formats": {
-        "ISO93": {}
-      }
+      "Mask": null,
+      "Name": "DE_62",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_63",
+      "DataEncoding": 1,
+      "DataType": "Numeric",
+      "Description": "Network Settlement Date",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 63,
-      "description": "Network Settlement Date",
-      "alias": "Network Settlement Date",
-      "HeaderLength": 2,
-      "type": "Variable",
-      "size": "3",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Binary",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_63",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_64",
-      "index": 64,
-      "description": "MESSAGE AUTHENTICATION CODE FIELD",
-      "alias": "MESSAGE AUTHENTICATION CODE FIELD",
-      "type": "Fixed",
-      "size": "8",
-      "dataType": "Binary",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Binary",
+      "Description": "MESSAGE AUTHENTICATION CODE FIELD",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 64,
+      "Mask": null,
+      "Name": "DE_64",
+      "PaddingChractor": null,
+      "Size": "8",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_65",
-      "index": 65,
-      "description": "ISO RESERVED",
-      "alias": "ISO RESERVED",
-      "type": "Fixed",
-      "size": "8",
-      "dataType": "Binary",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Binary",
+      "Description": "ISO RESERVED",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 65,
+      "Mask": null,
+      "Name": "DE_65",
+      "PaddingChractor": null,
+      "Size": "8",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_66",
-      "index": 66,
-      "description": "Amounts, Original Fees",
-      "alias": "Amounts, Original Fees",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "Amounts, Original Fees",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 66,
+      "Mask": null,
+      "Name": "DE_66",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_67",
-      "index": 67,
-      "description": "EXTENDED PAYMENT DATA",
-      "alias": "EXTENDED PAYMENT DATA",
-      "type": "Fixed",
-      "size": "2",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "EXTENDED PAYMENT DATA",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 67,
+      "Mask": null,
+      "Name": "DE_67",
+      "PaddingChractor": null,
+      "Size": "2",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_68",
-      "index": 68,
-      "description": " COUNTRY CODE RECEIVING INSTITUTION",
-      "alias": "COUNTRY CODE RECEIVING INSTITUTION",
-      "type": "Fixed",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": " COUNTRY CODE RECEIVING INSTITUTION",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 68,
+      "Mask": null,
+      "Name": "DE_68",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_69",
-      "index": 69,
-      "description": "COUNTRY CODE SETTLEMENT INSTITUTION ",
-      "alias": "COUNTRY CODE SETTLEMENT INSTITUTION ",
-      "type": "Fixed",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "COUNTRY CODE SETTLEMENT INSTITUTION ",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 69,
+      "Mask": null,
+      "Name": "DE_69",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_70",
-      "index": 70,
-      "description": "COUNTRY CODE AUTHORIZING AGENT INSTITUTION",
-      "alias": "COUNTRY CODE AUTHORIZING AGENT INSTITUTION",
-      "type": "Fixed",
-      "size": "3",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 5,
+      "DataType": "Numeric",
+      "Description": "COUNTRY CODE AUTHORIZING AGENT INSTITUTION",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 70,
+      "Mask": null,
+      "Name": "DE_70",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_71",
-      "index": 71,
-      "description": "MESSAGE NUMBER",
-      "alias": "MESSAGE NUMBER",
-      "type": "Fixed",
-      "size": "8",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "MESSAGE NUMBER",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 71,
+      "Mask": null,
+      "Name": "DE_71",
+      "PaddingChractor": null,
+      "Size": "8",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_72",
-      "index": 72,
-      "description": "Data Record 1",
-      "alias": "Data Record 1",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "Data Record 1",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 72,
+      "Mask": null,
+      "Name": "DE_72",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_73",
-      "index": 73,
-      "description": "DATE ACTION",
-      "alias": "DATE ACTION",
-      "type": "Fixed",
-      "size": "6",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "DATE ACTION",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 73,
+      "Mask": null,
+      "Name": "DE_73",
+      "PaddingChractor": null,
+      "Size": "6",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_74",
-      "index": 74,
-      "description": "CREDITS NUMBER",
-      "alias": "CREDITS NUMBER",
-      "type": "Fixed",
-      "size": "10",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "CREDITS NUMBER",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 74,
+      "Mask": null,
+      "Name": "DE_74",
+      "PaddingChractor": null,
+      "Size": "10",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_75",
-      "index": 75,
-      "description": "CREDITS REVERSAL NUMBER",
-      "alias": "CREDITS REVERSAL NUMBER",
-      "type": "Fixed",
-      "size": "10",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "CREDITS REVERSAL NUMBER",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 75,
+      "Mask": null,
+      "Name": "DE_75",
+      "PaddingChractor": null,
+      "Size": "10",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_76",
-      "index": 76,
-      "description": "DEBITS NUMBER",
-      "alias": "DEBITS NUMBER",
-      "type": "Fixed",
-      "size": "10",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "DEBITS NUMBER",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 76,
+      "Mask": null,
+      "Name": "DE_76",
+      "PaddingChractor": null,
+      "Size": "10",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_77",
-      "index": 77,
-      "description": "DEBITS REVERSAL NUMBER",
-      "alias": "DEBITS REVERSAL NUMBER",
-      "type": "Fixed",
-      "size": "10",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "DEBITS REVERSAL NUMBER",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 77,
+      "Mask": null,
+      "Name": "DE_77",
+      "PaddingChractor": null,
+      "Size": "10",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_78",
-      "index": 78,
-      "description": "TRANSFER NUMBER",
-      "alias": "TRANSFER NUMBER",
-      "type": "Fixed",
-      "size": "10",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "TRANSFER NUMBER",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 78,
+      "Mask": null,
+      "Name": "DE_78",
+      "PaddingChractor": null,
+      "Size": "10",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_79",
-      "index": 79,
-      "description": "TRANSFER REVERSAL NUMBER",
-      "alias": "TRANSFER REVERSAL NUMBER",
-      "type": "Fixed",
-      "size": "10",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "TRANSFER REVERSAL NUMBER",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 79,
+      "Mask": null,
+      "Name": "DE_79",
+      "PaddingChractor": null,
+      "Size": "10",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_80",
-      "index": 80,
-      "description": "INQUIRIES NUMBER",
-      "alias": "INQUIRIES NUMBER",
-      "type": "Fixed",
-      "size": "10",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "INQUIRIES NUMBER",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 80,
+      "Mask": null,
+      "Name": "DE_80",
+      "PaddingChractor": null,
+      "Size": "10",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_81",
-      "index": 81,
-      "description": "AUTHORIZATION NUMBER",
-      "alias": "AUTHORIZATION NUMBER",
-      "type": "Fixed",
-      "size": "10",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "AUTHORIZATION NUMBER",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 81,
+      "Mask": null,
+      "Name": "DE_81",
+      "PaddingChractor": null,
+      "Size": "10",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_82",
-      "index": 82,
-      "description": "INQUIRIES REVERSAL NUMBER",
-      "alias": "INQUIRIES REVERSAL NUMBER",
-      "type": "Fixed",
-      "size": "10",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "INQUIRIES REVERSAL NUMBER",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 82,
+      "Mask": null,
+      "Name": "DE_82",
+      "PaddingChractor": null,
+      "Size": "10",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_83",
-      "index": 83,
-      "description": "PAYMENTS NUMBER",
-      "alias": "PAYMENTS NUMBER",
-      "type": "Fixed",
-      "size": "10",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "PAYMENTS NUMBER",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 83,
+      "Mask": null,
+      "Name": "DE_83",
+      "PaddingChractor": null,
+      "Size": "10",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_84",
-      "index": 84,
-      "description": "PAYMENTS REVERSAL NUMBER",
-      "alias": "PAYMENTS REVERSAL NUMBER",
-      "type": "Fixed",
-      "size": "10",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "PAYMENTS REVERSAL NUMBER",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 84,
+      "Mask": null,
+      "Name": "DE_84",
+      "PaddingChractor": null,
+      "Size": "10",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_85",
-      "index": 85,
-      "description": "FEE COLLECTION NUMBER",
-      "alias": "FEE COLLECTION NUMBER",
-      "type": "Fixed",
-      "size": "10",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "FEE COLLECTION NUMBER",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 85,
+      "Mask": null,
+      "Name": "DE_85",
+      "PaddingChractor": null,
+      "Size": "10",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_86",
-      "index": 86,
-      "description": "CREDITS, AMOUNT",
-      "alias": "CREDITS, AMOUNT",
-      "type": "Fixed",
-      "size": "16",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "CREDITS, AMOUNT",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 86,
+      "Mask": null,
+      "Name": "DE_86",
+      "PaddingChractor": null,
+      "Size": "16",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_87",
-      "index": 87,
-      "description": "CREDITS, REVERSAL AMOUNT",
-      "alias": "CREDITS, REVERSAL AMOUNT",
-      "type": "Fixed",
-      "size": "16",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "CREDITS, REVERSAL AMOUNT",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 87,
+      "Mask": null,
+      "Name": "DE_87",
+      "PaddingChractor": null,
+      "Size": "16",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_88",
-      "index": 88,
-      "description": "DEBITS, AMOUNT",
-      "alias": "DEBITS, AMOUNT",
-      "type": "Fixed",
-      "size": "16",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "DEBITS, AMOUNT",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 88,
+      "Mask": null,
+      "Name": "DE_88",
+      "PaddingChractor": null,
+      "Size": "16",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_89",
-      "index": 89,
-      "description": "DEBITS, REVERSAL AMOUNT",
-      "alias": "DEBITS, REVERSAL AMOUNT",
-      "type": "Fixed",
-      "size": "16",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "DEBITS, REVERSAL AMOUNT",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 89,
+      "Mask": null,
+      "Name": "DE_89",
+      "PaddingChractor": null,
+      "Size": "16",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_90",
-      "index": 90,
-      "description": "AUTHORIZATIONS REVERSAL NUMBER",
-      "alias": "AUTHORIZATIONS REVERSAL NUMBER",
-      "type": "Fixed",
-      "size": "42",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "AUTHORIZATIONS REVERSAL NUMBER",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 90,
+      "Mask": null,
+      "Name": "DE_90",
+      "PaddingChractor": null,
+      "Size": "42",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_91",
-      "index": 91,
-      "description": "COUNTRY CODE TRANSACTION  DESTINATION INSTITUTION",
-      "alias": "COUNTRY CODE TRANSACTION  DESTINATION INSTITUTION",
-      "type": "Fixed",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "COUNTRY CODE TRANSACTION  DESTINATION INSTITUTION",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 91,
+      "Mask": null,
+      "Name": "DE_91",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_92",
-      "index": 92,
-      "description": "COUNTRY CODE TRANSACTION  ORIGINATOR INSTITUTION",
-      "alias": "COUNTRY CODE TRANSACTION  ORIGINATOR INSTITUTION",
-      "type": "Fixed",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "COUNTRY CODE TRANSACTION  ORIGINATOR INSTITUTION",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 92,
+      "Mask": null,
+      "Name": "DE_92",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_93",
-      "index": 93,
-      "description": "Transaction Destination Institution Identification Code",
-      "alias": "Transaction Destination Institution Identification Code",
-      "type": "Variable",
-      "size": "2",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "Transaction Destination Institution Identification Code",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 93,
+      "Mask": null,
+      "Name": "DE_93",
+      "PaddingChractor": null,
+      "Size": "2",
+      "Type": "Variable"
     },
     {
-      "name": "DE_94",
-      "index": 94,
-      "description": "Transaction Originator Institution Identification Code",
-      "alias": "Transaction Originator Institution Identification Code",
-      "type": "Variable",
-      "size": "2",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "Transaction Originator Institution Identification Code",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 94,
+      "Mask": null,
+      "Name": "DE_94",
+      "PaddingChractor": null,
+      "Size": "2",
+      "Type": "Variable"
     },
     {
-      "name": "DE_95",
-      "index": 95,
-      "description": "CM2 Data Record 1",
-      "alias": "CM2 Data Record 1",
-      "type": "Fixed",
-      "size": "42",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "CM2 Data Record 1",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 95,
+      "Mask": null,
+      "Name": "DE_95",
+      "PaddingChractor": null,
+      "Size": "42",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_96",
-      "index": 96,
-      "description": "KEY MANAGEMENT DATA",
-      "alias": "KEY MANAGEMENT DATA",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "Binary",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "DataEncoding": 4,
+      "DataType": "Binary",
+      "Description": "KEY MANAGEMENT DATA",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 96,
+      "Mask": null,
+      "Name": "DE_96",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_97",
-      "index": 97,
-      "description": "AMOUNT, NET RECONCILATION",
-      "alias": "AMOUNT, NET RECONCILATION",
-      "type": "Fixed",
-      "size": "17",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "AMOUNT, NET RECONCILATION",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 97,
+      "Mask": null,
+      "Name": "DE_97",
+      "PaddingChractor": null,
+      "Size": "17",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_98",
-      "index": 98,
-      "description": "PAYEE",
-      "alias": "PAYEE",
-      "type": "Fixed",
-      "size": "25",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "PAYEE",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 98,
+      "Mask": null,
+      "Name": "DE_98",
+      "PaddingChractor": null,
+      "Size": "25",
+      "Type": "Fixed"
     },
     {
-      "name": "DE_99",
-      "index": 99,
-      "description": "SETTLEMENT INSTITUTION IDENTFICATION CODE",
-      "alias": "SETTLEMENT INSTITUTION IDENT CODE",
-      "type": "Variable",
-      "size": "2",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "SETTLEMENT INSTITUTION IDENTFICATION CODE",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 99,
+      "Mask": null,
+      "Name": "DE_99",
+      "PaddingChractor": null,
+      "Size": "2",
+      "Type": "Variable"
     },
     {
-      "name": "DE_100",
-      "index": 100,
-      "description": "Receiving Institution Identification Code",
-      "alias": "Receiving Institution Identification Code",
-      "type": "Variable",
-      "size": "2",
-      "dataType": "Numeric",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "DataEncoding": 4,
+      "DataType": "Numeric",
+      "Description": "Receiving Institution Identification Code",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 100,
+      "Mask": null,
+      "Name": "DE_100",
+      "PaddingChractor": null,
+      "Size": "2",
+      "Type": "Variable"
     },
     {
-      "name": "DE_101",
-      "index": 101,
-      "description": "FILE NAME",
-      "alias": "FILE NAME",
-      "type": "Variable",
-      "size": "2",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "FILE NAME",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
+      "Index": 101,
+      "Mask": null,
+      "Name": "DE_101",
+      "PaddingChractor": null,
+      "Size": "2",
+      "Type": "Variable"
     },
     {
-      "name": "DE_102",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "Account Identification 1",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 102,
-      "description": "Account Identification 1",
-      "alias": "Account Identification 1",
-      "type": "Variable",
-      "size": "2",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_102",
+      "PaddingChractor": null,
+      "Size": "2",
+      "Type": "Variable"
     },
     {
-      "name": "DE_103",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "ACCOUNT IDENTIFICATION 2",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 103,
-      "description": "ACCOUNT IDENTIFICATION 2",
-      "alias": "ACCOUNT IDENTIFICATION 2",
-      "type": "Variable",
-      "size": "2",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_103",
+      "PaddingChractor": null,
+      "Size": "2",
+      "Type": "Variable"
     },
     {
-      "name": "DE_104",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "TRANSACTION DESCRIPTION",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 104,
-      "description": "TRANSACTION DESCRIPTION",
-      "alias": "TRANSACTION DESCRIPTION",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "Mask": null,
+      "Name": "DE_104",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_109",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "CREDITS FEE AMOUNT",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 109,
-      "description": "CREDITS FEE AMOUNT",
-      "alias": "CREDITS FEE AMOUNT",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "Mask": null,
+      "Name": "DE_109",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_110",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "DEBITS FEE AMOUNT",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 110,
-      "description": "DEBITS FEE AMOUNT",
-      "alias": "DEBITS FEE AMOUNT",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "Mask": null,
+      "Name": "DE_110",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_111",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "Data Record 4",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 111,
-      "description": "Data Record 4",
-      "alias": "Data Record 4",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_111",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_113",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "ISO RESERVED ",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 113,
-      "description": "ISO RESERVED ",
-      "alias": "ISO RESERVED ",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "Mask": null,
+      "Name": "DE_113",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_120",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "NATIONAL USE RESERVED ",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 120,
-      "description": "NATIONAL USE RESERVED ",
-      "alias": "NATIONAL USE RESERVED ",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "Mask": null,
+      "Name": "DE_120",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_122",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "NATIONAL USE RESERVED ",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 122,
-      "description": "NATIONAL USE RESERVED ",
-      "alias": "NATIONAL USE RESERVED ",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      }
+      "Mask": null,
+      "Name": "DE_122",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_123",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "Data 1",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 123,
-      "description": "Data 1",
-      "alias": "Data 1",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_123",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_124",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "Data 2",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 124,
-      "description": "Data 2",
-      "alias": "Data 2",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_124",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     },
     {
-      "name": "DE_127",
+      "DataEncoding": 4,
+      "DataType": "String",
+      "Description": "Additional Data 4",
+      "HeaderLength": null,
+      "HeaderLengthEncoding": 2,
       "Index": 127,
-      "description": "Additional Data 4",
-      "alias": "Additional Data 4",
-      "type": "Variable",
-      "size": "3",
-      "dataType": "String",
-      "HeaderLengthEncoding": "BinaryPlus",
-      "dataEncoding": "Hex",
-      "formats": {
-        "ISO93": {}
-      },
-      "paddingChar": ""
+      "Mask": null,
+      "Name": "DE_127",
+      "PaddingChractor": null,
+      "Size": "3",
+      "Type": "Variable"
     }
   ],
   "Messages": [
     {
-      "Name": "AuthRequest",
-      "Description": "",
       "Alias": "0100",
-      "Type": "Request",
-      "Identifier": [ "6", "7", "11" ],
-      "Fields": [ "6", "11" ]
+      "Description": "",
+      "Fields": [
+        "6",
+        "11"
+      ],
+      "Identifier": [
+        "6",
+        "7",
+        "11"
+      ],
+      "IsAdviceMessage": null,
+      "IsNetworkMessage": null,
+      "IsRepeatMessage": null,
+      "IsResponseMessage": null,
+      "Name": "AuthRequest",
+      "Type": "Request"
     },
     {
-      "Name": "PurchaseRequest",
-      "Description": "",
       "Alias": "0200",
-      "Type": "Request",
-      "Identifier": [ "6", "7", "11" ],
-      "Fields": [ "6", "11" ]
+      "Description": "",
+      "Fields": [
+        "6",
+        "11"
+      ],
+      "Identifier": [
+        "6",
+        "7",
+        "11"
+      ],
+      "IsAdviceMessage": null,
+      "IsNetworkMessage": null,
+      "IsRepeatMessage": null,
+      "IsResponseMessage": null,
+      "Name": "PurchaseRequest",
+      "Type": "Request"
     },
     {
-      "Name": "PurchaseRequest1",
-      "Description": "",
       "Alias": "0400",
-      "Type": "Request",
-      "Identifier": [ "6", "7", "11" ],
-      "Fields": [ "6", "11" ]
+      "Description": "",
+      "Fields": [
+        "6",
+        "11"
+      ],
+      "Identifier": [
+        "6",
+        "7",
+        "11"
+      ],
+      "IsAdviceMessage": null,
+      "IsNetworkMessage": null,
+      "IsRepeatMessage": null,
+      "IsResponseMessage": null,
+      "Name": "PurchaseRequest1",
+      "Type": "Request"
     },
     {
-      "Name": "PurchaseResponce",
-      "Description": "",
       "Alias": "0800",
-      "Type": "Request",
-      "Identifier": [ "6", "7", "11" ],
-      "Fields": [ "6", "11" ]
+      "Description": "",
+      "Fields": [
+        "6",
+        "11"
+      ],
+      "Identifier": [
+        "6",
+        "7",
+        "11"
+      ],
+      "IsAdviceMessage": null,
+      "IsNetworkMessage": null,
+      "IsRepeatMessage": null,
+      "IsResponseMessage": null,
+      "Name": "PurchaseResponce",
+      "Type": "Request"
     }
   ]
 }

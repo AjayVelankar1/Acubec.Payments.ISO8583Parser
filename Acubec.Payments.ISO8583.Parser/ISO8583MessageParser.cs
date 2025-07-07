@@ -68,11 +68,11 @@ public sealed class ISO8583MessageParser
         var messageConfiguration = schemaConfiguration.Messages.Where(c => c.Alias == isoMessage.MessageType).FirstOrDefault();
         if (messageConfiguration != null)
         {
-            isoMessage.IsAdviceMessage = messageConfiguration.IsAdviceMessage;
-            isoMessage.IsRepeatMessage = messageConfiguration.IsRepeatMessage;
-            isoMessage.IsResponseMessage = messageConfiguration.IsResponseMessage;
-            isoMessage.IsNetworkMessage = messageConfiguration.IsNetworkMessage;
-            isoMessage.IsFinancialTransaction = messageConfiguration.IsNetworkMessage;
+            isoMessage.IsAdviceMessage = messageConfiguration.IsAdviceMessage??false;
+            isoMessage.IsRepeatMessage = messageConfiguration.IsRepeatMessage ?? false;
+            isoMessage.IsResponseMessage = messageConfiguration.IsResponseMessage ?? false;
+            isoMessage.IsNetworkMessage = messageConfiguration.IsNetworkMessage ?? false;
+            isoMessage.IsFinancialTransaction = messageConfiguration.IsNetworkMessage ?? false;
         }
 
         return isoMessage;
@@ -113,7 +113,7 @@ public sealed class ISO8583MessageParser
             };
             if (isoFiled != null)
             {
-                isoFiled.Mask = field.Mask;
+                isoFiled.Mask = field.Mask??false;
             }
             return isoFiled;
         }

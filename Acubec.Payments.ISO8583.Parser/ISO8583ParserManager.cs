@@ -24,6 +24,7 @@ public static class ISO8583ParserManager
         services.AddKeyedSingleton<IEncoder>(DataEncoding.BinaryPlus.ToString(), new BinaryPlusEncoder());
         services.AddKeyedSingleton<IEncoder>(DataEncoding.EBCDIC.ToString(), new EBCDICFEncoder());
         services.AddKeyedSingleton<IEncoder>(DataEncoding.HEX.ToString(), new HexEncoder());
+        services.AddKeyedSingleton<IEncoder>(DataEncoding.BinaryUnPacked.ToString(), new BinaryUnPackedEncoder());
 
         Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 

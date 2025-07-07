@@ -16,6 +16,19 @@ internal class AsciiEncoder : IEncoder
         return bytes;
     }
 
+    public ReadOnlySpan<byte> DecodeFromASCIIValue(ReadOnlySpan<char> value)
+    {
+        var asciiBytes = Encoding.ASCII.GetBytes(value.ToString());
+        byte[] hexBytes = new byte[asciiBytes.Length * 2];
+        for (int i = 0; i < asciiBytes.Length; i++)
+        {
+            string hex = asciiBytes[i].ToString("X2");
+            hexBytes[i * 2] = (byte)hex[0];
+            hexBytes[i * 2 + 1] = (byte)hex[1];
+        }
+        return hexBytes;
+    }
+
     public ReadOnlySpan<char> Encode(ReadOnlySpan<byte> value)
     {
         return Encoding.ASCII.GetString(value).AsSpan();
@@ -29,6 +42,11 @@ internal class UTF8Encoder : IEncoder
         byte[] bytes = new byte[Encoding.UTF8.GetByteCount(value)];
         Encoding.UTF8.GetBytes(value, bytes);
         return bytes;
+    }
+
+    public ReadOnlySpan<byte> DecodeFromASCIIValue(ReadOnlySpan<char> value)
+    {
+        throw new NotImplementedException();
     }
 
     public ReadOnlySpan<char> Encode(ReadOnlySpan<byte> value)
@@ -46,6 +64,11 @@ internal class UTF32Encoder : IEncoder
         return bytes;
     }
 
+    public ReadOnlySpan<byte> DecodeFromASCIIValue(ReadOnlySpan<char> value)
+    {
+        throw new NotImplementedException();
+    }
+
     public ReadOnlySpan<char> Encode(ReadOnlySpan<byte> value)
     {
         return Encoding.UTF32.GetString(value).AsSpan();
@@ -58,7 +81,7 @@ internal class BinaryEncoder : IEncoder
     public ReadOnlySpan<byte> Decode(ReadOnlySpan<char> value)
     {
         if (value.IsEmpty || value.Length % 2 != 0)
-            throw new ArgumentException("Input must be a non-null hex string with even length.");
+            value =( "0" +  value.ToString()) .AsSpan(); // Default to empty byte array if input is invalid
 
         byte[] bytes = new byte[value.Length / 2];
         for (int i = 0; i < bytes.Length; i++)
@@ -67,6 +90,11 @@ internal class BinaryEncoder : IEncoder
             bytes[i] = Convert.ToByte(hexPair, 16);
         }
         return bytes;
+    }
+
+    public ReadOnlySpan<byte> DecodeFromASCIIValue(ReadOnlySpan<char> value)
+    {
+        throw new NotImplementedException();
     }
 
     // Encodes a byte array to a hex string (e.g., {0x00, 0xD4} => "00D4")
@@ -80,6 +108,41 @@ internal class BinaryEncoder : IEncoder
             string hex = value[i].ToString("X2");
             chars[i * 2] = hex[0];
             chars[i * 2 + 1] = hex[1];
+        }
+        return chars;
+    }
+}
+
+internal class BinaryUnPackedEncoder : IEncoder
+{
+    // Decodes a string of decimal digits (e.g., "1234") to a byte array {0x01, 0x02, 0x03, 0x04}
+    public ReadOnlySpan<byte> Decode(ReadOnlySpan<char> value)
+    {
+        if (value.IsEmpty)
+            throw new ArgumentException("Input must be a non-null string of decimal digits.");
+
+        byte[] bytes = new byte[value.Length];
+        for (int i = 0; i < value.Length; i++)
+        {
+            char c = value[i];
+            if (c < '0' || c > '9')
+                throw new ArgumentException($"Invalid character '{c}' at position {i}. Only decimal digits are allowed.");
+            bytes[i] = (byte)(c - '0');
+        }
+        return bytes;
+    }
+
+    // Encodes a byte array {0x01, 0x02, 0x03, 0x04} to a string of decimal digits ("1234")
+    public ReadOnlySpan<char> Encode(ReadOnlySpan<byte> value)
+    {
+        if (value.IsEmpty)
+            throw new ArgumentNullException(nameof(value));
+        char[] chars = new char[value.Length];
+        for (int i = 0; i < value.Length; i++)
+        {
+            if (value[i] > 9)
+                throw new ArgumentException($"Invalid BCD un-packed value {value[i]} at position {i}. Only 0-9 allowed.");
+            chars[i] = (char)('0' + value[i]);
         }
         return chars;
     }
@@ -108,6 +171,11 @@ internal class BinaryPlusEncoder : IEncoder
             i++;
         }
         return bytes;
+    }
+
+    public ReadOnlySpan<byte> DecodeFromASCIIValue(ReadOnlySpan<char> value)
+    {
+        throw new NotImplementedException();
     }
 
     // Encodes a byte array to a hex string (e.g., {0x0, 0xD4} => "00D4")
@@ -168,6 +236,9 @@ internal class HexEncoder : IEncoder
     // Encodes a byte array to a hex string (e.g., {0x00, 0xD4} => "00D4")
     public ReadOnlySpan<char> Encode(ReadOnlySpan<byte> value)
     {
+        if (value.Length % 2 != 0)
+            value = ByteHelper.Combine([(byte)0], value);
+
         if (value.IsEmpty)
             throw new ArgumentNullException(nameof(value));
         char[] chars = new char[value.Length * 2];
@@ -178,6 +249,19 @@ internal class HexEncoder : IEncoder
             chars[i * 2 + 1] = hex[1];
         }
         return chars;
+    }
+
+    public ReadOnlySpan<byte> DecodeFromASCIIValue(ReadOnlySpan<char> value)
+    {
+        var asciiBytes = Encoding.ASCII.GetBytes(value.ToString());
+        byte[] hexBytes = new byte[asciiBytes.Length * 2];
+        for (int i = 0; i < asciiBytes.Length; i++)
+        {
+            string hex = asciiBytes[i].ToString("X2");
+            hexBytes[i * 2] = (byte)hex[0];
+            hexBytes[i * 2 + 1] = (byte)hex[1];
+        }
+        return hexBytes;
     }
 }
 
@@ -191,6 +275,11 @@ internal class EBCDICFEncoder : IEncoder
         byte[] encodedBytes = new byte[maxByteCount];
         int bytesWritten = ebcdicEncoding.GetBytes(value, encodedBytes);
         return encodedBytes.AsSpan(0, bytesWritten);
+    }
+
+    public ReadOnlySpan<byte> DecodeFromASCIIValue(ReadOnlySpan<char> value)
+    {
+        throw new NotImplementedException();
     }
 
     public ReadOnlySpan<char> Encode(ReadOnlySpan<byte> value)
