@@ -46,7 +46,7 @@ public sealed class Field
 
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public DataEncoding HeaderLengthEncoding { get; set; }
-    public int? HeaderLength { get; internal set; }
+    public int? HeaderLength { get; set; }
 }
 
 public sealed class Message

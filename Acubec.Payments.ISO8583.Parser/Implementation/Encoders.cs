@@ -181,17 +181,12 @@ internal class BinaryPlusEncoder : IEncoder
     // Encodes a byte array to a hex string (e.g., {0x0, 0xD4} => "00D4")
     public ReadOnlySpan<char> Encode(ReadOnlySpan<byte> value)
     {
-        char[] chars = new char[value.Length * 2];
+        var sb = new StringBuilder();
         for (int i = 0; i < value.Length; i++)
         {
-            string hex = value[i].ToString();
-            chars[i * 2] = hex[0];
-            if (hex.Length > 1)
-                chars[i * 2 + 1] = hex[1];
-            else
-                chars[i * 2 + 1] = '\0';
+            sb.Append(value[i].ToString());
         }
-        return chars;
+        return sb.ToString().AsSpan();
     }
 }
 

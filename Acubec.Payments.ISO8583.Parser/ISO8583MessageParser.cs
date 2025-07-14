@@ -50,7 +50,9 @@ public sealed class ISO8583MessageParser
     public ReadOnlySpan<byte> ToBytes(IIsoMessage message, DataEncoding encoding)
     {
         var mtiParser = (IHeaderParser)_serviceProvider.GetKeyedService<IHeaderParser>(_schemaConfiguration.HeaderParserName ?? "ASCII")!;
-        return ((IsoRequest)message).ByteMap.GetDataByte(encoding, mtiParser, message, _schemaConfiguration, _serviceProvider);
+        var messageBytes =  ((IsoRequest)message).ByteMap.GetDataByte(encoding, mtiParser, message, _schemaConfiguration, _serviceProvider, _logDump);
+        _hexDump.Append(ByteHelper.HexDump(messageBytes));
+        return messageBytes;
     }
 
     private IsoRequest getMessage(string mti, SchemaConfiguration schemaConfiguration)
@@ -150,6 +152,8 @@ public sealed class ISO8583MessageParser
         multiplyer = 1;
         if (encoding == DataEncoding.ASCII) multiplyer = 2;
 
+        _logDump.Append("ByteMap is :");
+
         for (int i = 0; i < isoRequest.ByteMapLength; i++)
         {
 
@@ -177,7 +181,11 @@ public sealed class ISO8583MessageParser
             }
             isoRequest.ByteMap.SetBitMap(i, b);
             offset += 8 * multiplyer;
+            _logDump.AppendLine($"{isoRequest.ByteMap.getBitMap(i).ToBinaryString()}{Environment.NewLine}");
+
         }
+
+        
         return offset;
     }
 

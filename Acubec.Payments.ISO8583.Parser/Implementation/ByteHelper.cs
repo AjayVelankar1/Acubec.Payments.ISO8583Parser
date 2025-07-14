@@ -145,4 +145,17 @@ internal static class ByteHelper
 
         return result;
     }
+
+    internal static string ToBinaryString(this byte[] bytes)
+    {
+        if (bytes == null || bytes.Length == 0)
+            return string.Empty;
+
+        StringBuilder sb = new StringBuilder(bytes.Length * 8);
+        foreach (var b in bytes)
+        {
+            sb.Append(Convert.ToString(b, 2).PadLeft(8, '0'));
+        }
+        return sb.ToString();
+    }
 }

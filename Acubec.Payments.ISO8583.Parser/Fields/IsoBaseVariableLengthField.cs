@@ -71,25 +71,27 @@ public class IsoVariableLengthField : BaseIsoField, IIsoField
             var messageEncoder = _serviceProvider.GetKeyedService<IEncoder>(base._messageEncoding.ToString());
             var length = _value.Length;
             var lengthString = string.Empty;
+
             if (_headerLengthEncoding == DataEncoding.ASCII)
+            {
                 lengthString = length.ToString(CultureInfo.InvariantCulture).PadLeft(_originalLength, '0');
+            }
+
 
             var strLength = length.ToString();
 
-            if (_encoding == DataEncoding.HEX)
+            if (_encoding.IsPackedEncoding())
             {
                 length = length / 2;
                 strLength = length.ToString();
-                if (strLength.Length %2 != 0)
+                if (strLength.Length % 2 != 0)
                 {
                     strLength = "0" + strLength; // Ensure even length for HEX encoding
                 }
             }
-            
+
             var lengthBytes = lengthEncoder.Decode(strLength);
             var valueBytes = encoder.Decode(_value.AsSpan());
-
-           
             var value = ByteHelper.Combine(lengthBytes, valueBytes).ToReadOnlySpan();
             return value;
         }
@@ -108,7 +110,7 @@ public class IsoVariableLengthField : BaseIsoField, IIsoField
         var encoder = _serviceProvider.GetKeyedService<IEncoder>(_encoding.ToString())!;
         var lengthEncoder = _serviceProvider.GetKeyedService<IEncoder>(_headerLengthEncoding.ToString())!;
         var messageEncoder = _serviceProvider.GetKeyedService<IEncoder>(base._messageEncoding.ToString())!;
-        
+
         var lengthString = lengthEncoder.Decode(_value.Length.ToString());
         var valueBytes = encoder.Decode(_value.AsSpan());
         var value = ByteHelper.Combine(lengthString, valueBytes).ToReadOnlySpan();
@@ -120,28 +122,22 @@ public class IsoVariableLengthField : BaseIsoField, IIsoField
     {
         var encoder = _serviceProvider.GetKeyedService<IEncoder>(_encoding.ToString());
         var lengthEncoder = _serviceProvider.GetKeyedService<IEncoder>(_headerLengthEncoding.ToString());
-        var length = _field.HeaderLength.HasValue ?  _field.HeaderLength: _field.SizeInt;
-        
-        if (_headerLengthEncoding == DataEncoding.Binary || _headerLengthEncoding == DataEncoding.BinaryPlus)
-        {
-            length = 1;
-            //throw new Exception($"Invalid length for field {Name} at index {_messageIndex}");
-        }
+        var length = _field.HeaderLength.HasValue ? _field.HeaderLength : _field.SizeInt;
 
         var bytes = dataByte.GetByteSlice(length ?? 0, offset);
         var strLen = lengthEncoder.Encode(bytes);
 
         var dataLength = Convert.ToInt32(strLen.ToString(), CultureInfo.InvariantCulture);
 
-        if (_encoding == DataEncoding.HEX)
+        if (_encoding.IsPackedEncoding())
         {
             dataLength = dataLength / 2;
             if (dataLength % 2 != 0) ++dataLength;
         }
 
-        bytes = dataByte.GetByteSlice(dataLength, offset + length??0);
+        bytes = dataByte.GetByteSlice(dataLength, offset + length ?? 0);
         Value = encoder.Encode(bytes).ToString();
-        return dataLength + length??0;
+        return dataLength + length ?? 0;
     }
 
 

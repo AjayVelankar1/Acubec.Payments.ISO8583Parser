@@ -114,7 +114,7 @@ public sealed class ByteMaps
 
     }
 
-    internal byte[] GetDataByte(DataEncoding format, IHeaderParser mtiParser, IIsoMessage message, SchemaConfiguration schemaConfiguration, IServiceProvider serviceProvider)
+    internal byte[] GetDataByte(DataEncoding format, IHeaderParser mtiParser, IIsoMessage message, SchemaConfiguration schemaConfiguration, IServiceProvider serviceProvider, StringBuilder logDump)
     {
         ReadOnlySpan<byte> str = Span<byte>.Empty;
         _byteMaps[0].IsSet = true;
@@ -133,6 +133,7 @@ public sealed class ByteMaps
             {
                 _byteMaps[index].IsSet = true;
                 str = ByteHelper.Combine(str, field.Value.ValueSpans);
+                logDump.Append($"{Environment.NewLine}DE-[{field.Key}]:[{field.Value.Name}]=> [{field.Value.LogDump()}]");
             }
         }
         

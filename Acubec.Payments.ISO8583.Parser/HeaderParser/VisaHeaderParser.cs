@@ -24,7 +24,7 @@ internal sealed class VisaHeaderParser: IHeaderParser
     private string _mti;
     Dictionary<string, string> _otherProperties;
 
-    public int HeaderLength => _headerLength + 2 + 8;
+    public int HeaderLength => 24;// _headerLength + 1 + 8;
 
     public VisaHeaderParser()
     {
@@ -80,7 +80,7 @@ internal sealed class VisaHeaderParser: IHeaderParser
         Span<byte> headerBytes = stackalloc byte[25];
 
         // 0-1: Message Length (2 bytes, big-endian)
-        headerBytes[0] = byte.Parse(totalLength.ToString()); // High byte
+        headerBytes[0] = byte.Parse("16"); // High byte
         
         // 2: Header Length (1 byte, always 16 for Visa)
         if (_headerLength == 0) _headerLength  = 16;
