@@ -8,6 +8,7 @@ namespace Acubec.Payments.ISO8583.Parser.Implementation;
 
 internal static class ByteHelper
 {
+
     internal static ReadOnlySpan<byte> Combine(ReadOnlySpan<byte> header, ReadOnlySpan<byte> biteMapBytes, ReadOnlySpan<byte> dataBytes)
     {
         int totalLength = header.Length + biteMapBytes.Length + dataBytes.Length;
