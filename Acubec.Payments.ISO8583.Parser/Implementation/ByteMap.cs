@@ -15,7 +15,7 @@ internal class ByteMap
 {
     byte[] _bitMap;
     bool _isSet;
-    string _value;
+    //string _value;
     public bool IsSet
     {
         get
