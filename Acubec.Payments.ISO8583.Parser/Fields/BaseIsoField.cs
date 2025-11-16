@@ -2,12 +2,6 @@
 using Acubec.Payments.ISO8583.Parser.Interfaces;
 using Acubec.Payments.ISO8583.Parser.Types;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualBasic.FileIO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Acubec.Payments.ISO8583.Parser.Fields;
 
