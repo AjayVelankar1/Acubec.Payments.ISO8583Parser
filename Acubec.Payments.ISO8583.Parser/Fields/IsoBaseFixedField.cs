@@ -2,11 +2,6 @@
 using Acubec.Payments.ISO8583.Parser.Interfaces;
 using Acubec.Payments.ISO8583.Parser.Types;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Acubec.Payments.ISO8583.Parser.Fields;
 
@@ -37,15 +32,15 @@ public abstract class IsoBaseFixedField : BaseIsoField, IIsoField
             //throw new ArgumentException();
         }
 
-        var encoder = _serviceProvider.GetKeyedService<IEncoder>(_encoding.ToString());
-        var messageEncoder = _serviceProvider.GetKeyedService<IEncoder>(base._messageEncoding.ToString());
+        //var encoder = _serviceProvider.GetKeyedService<IEncoder>(_encoding.ToString())!;
+        //var messageEncoder = _serviceProvider.GetKeyedService<IEncoder>(base._messageEncoding.ToString());
 
         return Value;
     }
 
     public override int SetValueBytes(ReadOnlySpan<byte> dataByte, int offset)
     {
-        var encoder = _serviceProvider.GetKeyedService<IEncoder>(_encoding.ToString());
+        var encoder = _serviceProvider.GetKeyedService<IEncoder>(_encoding.ToString())!;
         var length = _field.SizeInt;
 
         //if (_encoding.IsPackedEncoding())
@@ -62,7 +57,7 @@ public abstract class IsoBaseFixedField : BaseIsoField, IIsoField
     }
 
 
-    public override ReadOnlySpan<byte> ValueSpans 
+    public override ReadOnlySpan<byte> ValueSpans
     {
         get
         {
@@ -90,7 +85,7 @@ public abstract class IsoBaseFixedField : BaseIsoField, IIsoField
                 }
             }
             var encoder = _serviceProvider.GetKeyedService<IEncoder>(_encoding.ToString())!;
-            var result =  encoder.Decode(Value);
+            var result = encoder.Decode(Value);
             return result;
         }
     }

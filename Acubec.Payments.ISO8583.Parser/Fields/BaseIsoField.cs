@@ -70,7 +70,7 @@ public abstract class BaseIsoField : IIsoField
 
     public virtual ReadOnlySpan<Byte> GetValueBytes()
     {
-        var encoder = _serviceProvider.GetKeyedService<IEncoder>(_encoding.ToString());
+        var encoder = _serviceProvider.GetKeyedService<IEncoder>(_encoding.ToString())!;
         return encoder.Decode(ToString().AsSpan());
     }
 
@@ -80,7 +80,7 @@ public abstract class BaseIsoField : IIsoField
         {
             if (_value?.Length > 4)
             {
-                return string.Format($"****-{_value.Substring(_value.Length - 4)}");
+                return string.Format($"****-{_value[^4..]}");
             }
             else
             {

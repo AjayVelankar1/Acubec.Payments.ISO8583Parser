@@ -2,12 +2,7 @@
 using Acubec.Payments.ISO8583.Parser.Interfaces;
 using Acubec.Payments.ISO8583.Parser.Types;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Acubec.Payments.ISO8583.Parser.Fields;
 
@@ -16,6 +11,7 @@ public class IsoVariableLengthField : BaseIsoField, IIsoField
     //private readonly short _bitMapLength;
     private int _originalLength;
     protected DataEncoding _headerLengthEncoding;
+
     #region Public Constructors
 
     /// <summary>
@@ -63,12 +59,12 @@ public class IsoVariableLengthField : BaseIsoField, IIsoField
         {
             if (!IsSet)
             {
-                return Span<byte>.Empty;
+                return [];
             }
 
             var encoder = _serviceProvider.GetKeyedService<IEncoder>(_encoding.ToString())!;
             var lengthEncoder = _serviceProvider.GetKeyedService<IEncoder>(_headerLengthEncoding.ToString())!;
-            var messageEncoder = _serviceProvider.GetKeyedService<IEncoder>(base._messageEncoding.ToString());
+            var messageEncoder = _serviceProvider.GetKeyedService<IEncoder>(base._messageEncoding.ToString())!;
             var length = _value.Length;
             var lengthString = string.Empty;
 
@@ -82,7 +78,7 @@ public class IsoVariableLengthField : BaseIsoField, IIsoField
 
             if (_encoding.IsPackedEncoding())
             {
-                length = length / 2;
+                length /= 2;
                 strLength = length.ToString();
                 if (strLength.Length % 2 != 0)
                 {
@@ -120,8 +116,8 @@ public class IsoVariableLengthField : BaseIsoField, IIsoField
 
     public override int SetValueBytes(ReadOnlySpan<byte> dataByte, int offset)
     {
-        var encoder = _serviceProvider.GetKeyedService<IEncoder>(_encoding.ToString());
-        var lengthEncoder = _serviceProvider.GetKeyedService<IEncoder>(_headerLengthEncoding.ToString());
+        var encoder = _serviceProvider.GetKeyedService<IEncoder>(_encoding.ToString())!;
+        var lengthEncoder = _serviceProvider.GetKeyedService<IEncoder>(_headerLengthEncoding.ToString())!;
         var length = _field.HeaderLength.HasValue ? _field.HeaderLength : _field.SizeInt;
 
         var bytes = dataByte.GetByteSlice(length ?? 0, offset);
@@ -131,7 +127,7 @@ public class IsoVariableLengthField : BaseIsoField, IIsoField
 
         if (_encoding.IsPackedEncoding())
         {
-            dataLength = dataLength / 2;
+            dataLength /= 2;
             if (dataLength % 2 != 0) ++dataLength;
         }
 
