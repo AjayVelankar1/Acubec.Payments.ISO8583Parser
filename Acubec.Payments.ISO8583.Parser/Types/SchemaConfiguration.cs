@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using MemoryPack;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Acubec.Payments.ISO8583.Parser.Types;
 
@@ -23,7 +19,8 @@ public class SchemaConfiguration
     public string SchemaName { get; set; }
 }
 
-public sealed class Field
+[MemoryPackable]
+public sealed partial record Field
 {
     public int Index { get; set; }
 
@@ -49,7 +46,8 @@ public sealed class Field
     public int? HeaderLength { get; set; }
 }
 
-public sealed class Message
+[MemoryPackable]
+public sealed partial class Message
 {
     public string Name { get; set; }
     public string Description { get; set; }
